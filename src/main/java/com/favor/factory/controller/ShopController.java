@@ -13,5 +13,4 @@ public class ShopController {
         return "client/shop";
     }
 
-
 }
