@@ -12,7 +12,7 @@
     <!-- Fav Icon  -->
     <link rel="shortcut icon" th:href="@{/admin/src/images/OP_ico.png}">
     <!-- Page Title  -->
-    <title>Товари</title>
+    <title>Розміри</title>
     <!-- StyleSheets  -->
     <link rel="stylesheet" th:href="@{/admin/src/assets/css/dashlite.css}">
     <link id="skin-default" rel="stylesheet" th:href="@{/admin/src/assets/css/theme.css}">
@@ -58,7 +58,7 @@
                                     </div>
                                 </li><!-- .dropdown -->
                                 <li>
-                                    <a href="#" class="nk-quick-nav-icon" data-toggle="tooltip"
+                                    <a href="/logout" class="nk-quick-nav-icon" data-toggle="tooltip"
                                        data-placement="bottom" title="Вийти">
                                         <em class="icon ni ni-signout"></em>
                                     </a>
@@ -77,7 +77,7 @@
                             <div class="components-preview wide-md mx-auto">
                                 <div class="nk-block-head nk-block-head-lg wide-sm">
                                     <div class="nk-block-head-content">
-                                        <h3 class="nk-block-title fw-normal">Категорії</h3>
+                                        <h3 class="nk-block-title fw-normal">Розміри</h3>
                                     </div>
                                 </div><!-- .nk-block-head -->
 
@@ -97,19 +97,19 @@
                                             </ul>
                                             <div class="tab-content">
                                                 <div class="tab-pane" th:classappend="(${tabName?.equals('CLOTHES')})?'active':''" id="clothesTab">
-                                                    <h5>Типи одягу</h5>
+                                                    <h5>Розміри</h5>
                                                     <table class="table table-striped">
                                                         <thead>
                                                         <tr>
                                                             <th scope="col">#</th>
-                                                            <th scope="col">Назва</th>
+                                                            <th scope="col">Розмір</th>
                                                             <th scope="col" style="text-align: right; padding-right: 2rem;" >Дії</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        <tr th:each="t, c : ${types}" th:id="${t.getId()}" th:if="${t.getCategory().name().equals('CLOTHES')}">
+                                                        <tr th:each="t, c : ${sizes}" th:id="${t.getId()}" th:if="${t.getCategory().name().equals('CLOTHES')}">
                                                             <th scope="row" th:text="${c.count}">1</th>
-                                                            <td th:text="${t.getName()}">Mark</td>
+                                                            <td th:text="${t.getSize()}">Mark</td>
                                                             <td class="nk-tb-col nk-tb-col-tools">
                                                                 <ul class="nk-tb-actions gx-1">
                                                                     <li>
@@ -135,19 +135,19 @@
                                                     </a>
                                                 </div>
                                                 <div class="tab-pane" th:classappend="(${tabName?.equals('SHOES')})?'active':''" id="shoesTab">
-                                                    <h5>Типи взуття</h5>
+                                                    <h5>Розміри</h5>
                                                     <table class="table table-striped">
                                                         <thead>
                                                         <tr>
                                                             <th scope="col">#</th>
-                                                            <th scope="col">Назва</th>
+                                                            <th scope="col">Розмір</th>
                                                             <th scope="col" style="text-align: right; padding-right: 2rem;" >Дії</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        <tr th:each="t, count : ${types}" th:id="${t.getId()}" th:if="${t.getCategory().name().equals('SHOES')}">
+                                                        <tr th:each="t, count : ${sizes}" th:id="${t.getId()}" th:if="${t.getCategory().name().equals('SHOES')}">
                                                             <th scope="row" th:text="${count.count}">1</th>
-                                                            <td th:text="${t.getName()}">Mark</td>
+                                                            <td th:text="${t.getSize()}">Mark</td>
                                                             <td class="nk-tb-col nk-tb-col-tools">
                                                                 <ul class="nk-tb-actions gx-1">
                                                                     <li>
@@ -187,11 +187,11 @@
                     <div class="modal-content">
                         <a href="#" class="close" data-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
                         <div class="modal-body modal-body-sm">
-                            <form action="/admin/addType" method="post">
+                            <form action="/admin/addSize" method="post">
                                 <h4 class="title" id="addTypeModelTitle">Добавлення</h4>
                                 <input type="text" id="addSubcategoryItemCategory" hidden="" name="categoryName">
                                 <div class="form-group"  style="margin-top: 2rem;">
-                                    <label class="form-label" for="addSubcategoryItemName">Назва</label>
+                                    <label class="form-label" for="addSubcategoryItemName">Розмір</label>
                                     <div class="form-control-wrap">
                                         <input type="text" class="form-control" id="addSubcategoryItemName" placeholder="Не заповнено..." name="nameOfType">
                                     </div>
@@ -212,13 +212,13 @@
                     <div class="modal-content">
                         <a href="#" class="close" data-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
                         <div class="modal-body modal-body-sm">
-                            <form action="/admin/editType" method="post">
+                            <form action="/admin/editSize" method="post">
                                 <h4 class="title">Редагування</h4>
                                 <input type="number" id="selectedForEditItem" hidden="" name="id">
                                 <div class="form-group"  style="margin-top: 2rem;">
-                                    <label class="form-label" for="editSubcategoryItemName">Назва</label>
+                                    <label class="form-label" for="editSubcategoryItemName">Розмір</label>
                                     <div class="form-control-wrap">
-                                        <input type="text" class="form-control" id="editSubcategoryItemName" placeholder="Не заповнено..." name="name">
+                                        <input type="text" class="form-control" id="editSubcategoryItemName" placeholder="Не заповнено..." name="size">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -239,9 +239,9 @@
                         <div class="modal-body modal-body-sm">
                             <h4 class="title">Видалення</h4>
                             <br>
-                            <form action="/admin/deleteType" method="post">
+                            <form action="/admin/deleteSize" method="post">
                                 <input type="text" id="selectedForDeleteItem" hidden="" name="typeId">
-                                <p style="margin-bottom: 2rem;">Ви впеанені, що хочете видалити тип? Підтвердивши дію, ви не зможете повернутися до попереднього стану.</p>
+                                <p style="margin-bottom: 2rem;">Ви впеанені, що хочете видалити розмір? Підтвердивши дію, ви не зможете повернутися до попереднього стану.</p>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-outline-primary">Підтвердити</button>
                                     <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Скасувати</button>
@@ -255,63 +255,63 @@
 
 
 
-                <!-- content @e -->
-                <!-- footer @s -->
-                <div class="nk-footer">
-                    <div class="container-fluid">
-                        <div class="nk-footer-wrap">
-                            <div class="nk-footer-copyright"> &copy; 2020 Oksana Piekna</a>
-                            </div>
+            <!-- content @e -->
+            <!-- footer @s -->
+            <div class="nk-footer">
+                <div class="container-fluid">
+                    <div class="nk-footer-wrap">
+                        <div class="nk-footer-copyright"> &copy; 2020 Oksana Piekna</a>
                         </div>
                     </div>
                 </div>
-                <!-- footer @e -->
             </div>
-            <!-- wrap @e -->
+            <!-- footer @e -->
         </div>
-        <!-- main @e -->
+        <!-- wrap @e -->
     </div>
-    <!-- app-root @e -->
-    <!-- JavaScript -->
-    <script th:src="@{/admin/src/assets/js/bundle.js}"></script>
-    <script th:src="@{/admin/src/assets/js/scripts.js}"></script>
-    <script th:src="@{/admin/src/assets/js/example-sweetalert.js}"></script>
-    <script>
-        function addClothesType(){
-            $('#addSubcategoryItemCategory').val("CLOTHES");
-            $('#addTypeModelTitle').text('Додати тип одягу');
-            $('#addSubcategoryItemModal').modal('show');
-        }
-        function addShoesType(){
-            $('#addSubcategoryItemCategory').val("SHOES");
-            $('#addTypeModelTitle').text('Додати тип взуття');
-            $('#addSubcategoryItemModal').modal('show');
-        }
-        function showEditProductTypeModal(btnObj){
-            let trObj = btnObj.closest("tbody tr");
-            let trId =  $(trObj).attr('id');
-            
-            console.log("row id:" + $(trObj).attr('id'));
+    <!-- main @e -->
+</div>
+<!-- app-root @e -->
+<!-- JavaScript -->
+<script th:src="@{/admin/src/assets/js/bundle.js}"></script>
+<script th:src="@{/admin/src/assets/js/scripts.js}"></script>
+<script th:src="@{/admin/src/assets/js/example-sweetalert.js}"></script>
+<script>
+    function addClothesType(){
+        $('#addSubcategoryItemCategory').val("CLOTHES");
+        $('#addTypeModelTitle').text('Додати розмір');
+        $('#addSubcategoryItemModal').modal('show');
+    }
+    function addShoesType(){
+        $('#addSubcategoryItemCategory').val("SHOES");
+        $('#addTypeModelTitle').text('Додати розмір');
+        $('#addSubcategoryItemModal').modal('show');
+    }
+    function showEditProductTypeModal(btnObj){
+        let trObj = btnObj.closest("tbody tr");
+        let trId =  $(trObj).attr('id');
 
-            let typeName =   $(trObj).find('td:eq(0)').text();
-            console.log($(trObj).find('td:eq(0)').text());
+        console.log("row id:" + $(trObj).attr('id'));
 
-            $('#editSubcategoryItemName').val(typeName);
-            $('#selectedForEditItem').val(trId);
+        let typeName =   $(trObj).find('td:eq(0)').text();
+        console.log($(trObj).find('td:eq(0)').text());
 
-            $('#editSubcategoryItemModal').modal('show');
-        }
-        function showConfirmationDeleteProductTypeModal(btnObj){
-            let trObj = btnObj.closest("tbody tr");
-            let trId =  $(trObj).attr('id');
-            
-            console.log("row id:" + $(trObj).attr('id'));
+        $('#editSubcategoryItemName').val(typeName);
+        $('#selectedForEditItem').val(trId);
 
-            $('#selectedForDeleteItem').val(trId);
+        $('#editSubcategoryItemModal').modal('show');
+    }
+    function showConfirmationDeleteProductTypeModal(btnObj){
+        let trObj = btnObj.closest("tbody tr");
+        let trId =  $(trObj).attr('id');
 
-            $('#deleteSubcategoryItemModal').modal('show');
-        }
-    </script>
+        console.log("row id:" + $(trObj).attr('id'));
+
+        $('#selectedForDeleteItem').val(trId);
+
+        $('#deleteSubcategoryItemModal').modal('show');
+    }
+</script>
 </body>
 
 </html>
