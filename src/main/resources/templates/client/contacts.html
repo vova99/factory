@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<html class="wide wow-animation" lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-  <head>
+<html class="js" lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
     <!-- Site Title-->
     <title>Контакти</title>
     <meta name="format-detection" content="telephone=no">
@@ -43,7 +46,7 @@
     <!-- Page-->
     <div class="page">
       <!-- RD Navbar-->
-      <div th:replace="~{admin/fragments/fragAdminHeader.html}"></div>
+      <div th:replace="~{client/fragments/header.html :: headerFrag}"></div>
 
 
       <section class="section-md bg-default" id="contacts">
