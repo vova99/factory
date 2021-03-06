@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html class="wide wow-animation" lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html class="js" lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
   <head>
     <!-- Site Title-->
     <title>Магазин</title>
@@ -43,7 +46,7 @@
     <!-- Page-->
     <div class="page">
       <!-- RD Navbar-->
-      <div th:replace="~{admin/fragments/fragAdminHeader.html}"></div>
+      <div th:replace="~{client/fragments/header.html :: headerFrag}"></div>
 
       <!-- Call to Action-->
       <section class="section section-sm context-dark bg-gray-dark section-cta">
