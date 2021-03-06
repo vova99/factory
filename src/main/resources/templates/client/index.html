@@ -10,14 +10,14 @@
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
-    <link rel="icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="icon" th:href="@{/images/favicon.png}" type="image/x-icon">
     <!-- Stylesheets-->
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,900">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,900">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{css/style.css}">
+    <link rel="stylesheet" th:href="@{css/fonts.css}">
 		<!--[if lt IE 10]>
-    <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
+    <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="/images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
     <script src="js/html5shiv.min.js"></script>
 		<![endif]-->
   </head>
@@ -51,7 +51,7 @@
       <section id="home">
         <div class="swiper-container swiper-slider swiper-slider_fullheight" data-simulate-touch="false" data-loop="false" data-autoplay="false">
           <div class="swiper-wrapper">
-            <div class="swiper-slide context-dark bg-overlay-darker" data-slide-bg="images/EY1A1864.jpg">
+            <div class="swiper-slide context-dark bg-overlay-darker" data-slide-bg="/images/EY1A1864.jpg">
               <div class="swiper-slide-caption text-center">
                 <div class="container">
                   <h1 data-caption-animate="fadeInUpSmall"><span>Extrafast</span></h1>
@@ -60,14 +60,14 @@
                 </div>
               </div>
             </div>
-            <div class="swiper-slide context-dark bg-overlay-darker" data-slide-bg="images/2L4A9082.jpg">
+            <div class="swiper-slide context-dark bg-overlay-darker" data-slide-bg="/images/2L4A9082.jpg">
               <div class="swiper-slide-caption">
                 <div class="container">
                   <h2 data-caption-animate="fadeInLeftSmall">Designing Impressive<br class="d-none d-lg-block"> Websites for You</h2><a class="button button-primary" data-caption-animate="fadeInLeftSmall" data-caption-delay="200" href="#" data-toggle="modal" data-target="#modalLogin">Contact us</a>
                 </div>
               </div>
             </div>
-            <div class="swiper-slide context-dark bg-overlay-darker" data-slide-bg="images/pexels-castorly-stock-3682293.jpg">
+            <div class="swiper-slide context-dark bg-overlay-darker" data-slide-bg="/images/pexels-castorly-stock-3682293.jpg">
               <div class="swiper-slide-caption text-center">
                 <div class="container">
                   <div class="row justify-content-center">
@@ -155,7 +155,7 @@
             </div>
           </div>
         </div>
-        <div class="object-wrap__body object-wrap__body-sizing-1 object-wrap__body-md-left bg-image" style="background-image: url(images/bg-image-1.jpg)"></div>
+        <div class="object-wrap__body object-wrap__body-sizing-1 object-wrap__body-md-left bg-image" style="background-image: url(/images/bg-image-1.jpg)"></div>
       </section>
       <!-- Posts-->
       <section class="section-md bg-default" id="news">
@@ -170,7 +170,7 @@
             <div class="owl-carousel owl-carousel-spacing-2" data-items="1" data-sm-items="2" data-xl-items="3" data-dots="true" data-nav="false" data-stage-padding="15" data-margin="30" data-autoplay="false" data-mouse-drag="false">
               <div class="owl-item">
                 <!-- Post classic-->
-                <article class="post-classic post-minimal"><a class="post-minimal-image" href="#"><img src="images/home-post-2-418x315.jpg" alt="" width="418" height="315"/></a>
+                <article class="post-classic post-minimal"><a class="post-minimal-image" href="#"><img src="/images/home-post-2-418x315.jpg" alt="" width="418" height="315"/></a>
                   <div class="post-classic-title">
                     <h6><a href="#">Якісні матеріали</a></h6>
                   </div>
@@ -181,7 +181,7 @@
               </div>
               <div class="owl-item">
                 <!-- Post classic-->
-                <article class="post-classic post-minimal"><a class="post-minimal-image" href="#"><img src="images/home-post-1-418x315.jpg" alt="" width="418" height="315"/></a>
+                <article class="post-classic post-minimal"><a class="post-minimal-image" href="#"><img src="/images/home-post-1-418x315.jpg" alt="" width="418" height="315"/></a>
                   <div class="post-classic-title">
                     <h6><a href="#">Сучасне обладнання</a></h6>
                   </div>
@@ -192,7 +192,7 @@
               </div>
               <div class="owl-item">
                 <!-- Post classic-->
-                <article class="post-classic post-minimal"><a class="post-minimal-image" href="#"><img src="images/home-post-3-418x315.jpg" alt="" width="418" height="315"/></a>
+                <article class="post-classic post-minimal"><a class="post-minimal-image" href="#"><img src="/images/home-post-3-418x315.jpg" alt="" width="418" height="315"/></a>
                   <div class="post-classic-title">
                     <h6><a href="#">Надійне пошиття</a></h6>
                   </div>
@@ -206,7 +206,7 @@
         </div>
       </section>
       <!-- Counters-->
-      <section class="section parallax-container context-dark" data-parallax-img="images/parallax-1.jpg">
+      <section class="section parallax-container context-dark" data-parallax-img="/images/parallax-1.jpg">
         <div class="parallax-content">
           <div class="container section-md">
             <div class="row justify-content-md-center row-50">
@@ -298,7 +298,7 @@
               </article>
             </div>
             <div class="col-md-7 col-lg-4">
-              <figure class="image-sizing-1"><img src="images/home-business-1-391x642.png" alt="" width="391" height="642"/>
+              <figure class="image-sizing-1"><img src="/images/home-business-1-391x642.png" alt="" width="391" height="642"/>
               </figure>
             </div>
           </div>
@@ -434,8 +434,8 @@
     <!-- Global Mailform Output-->
     <div class="snackbars" id="form-output-global"></div>
     <!-- Javascript-->
-    <script src="js/core.min.js"></script>
-    <script src="js/script.js"></script>
+    <script th:src="@{js/core.min.js}"></script>
+    <script th:src="@{js/script.js}"></script>
     <!-- coded by gel-->
   </body>
 </html>
