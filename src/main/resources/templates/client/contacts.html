@@ -5,7 +5,7 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <!-- Site Title-->
-    <title>Контакти</title>
+    <title>Favor - Контакти</title>
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -53,17 +53,17 @@
         <div class="container">
           <div class="row row-50">
             <div class="col-md-5 col-lg-4">
-              <h4 class="heading-decorated">Contact Details</h4>
+              <h4 class="heading-decorated">Контактні Дані</h4>
               <ul class="list-sm contact-info">
                 <li>
                   <dl class="list-terms-inline">
-                    <dt>Address</dt>
+                    <dt>адреса</dt>
                     <dd>Львів, вул. Промислова 27</dd>
                   </dl>
                 </li>
                 <li>
                   <dl class="list-terms-inline">
-                    <dt>Phones</dt>
+                    <dt>телефони</dt>
                     <dd>
                       <ul class="list-semicolon">
                         <li><a href="tel:#">(800) 123-0045</a></li>
@@ -74,7 +74,7 @@
                 </li>
                 <li>
                   <dl class="list-terms-inline">
-                    <dt>We are open</dt>
+                    <dt>графік роботи</dt>
                     <dd>Mn-Fr: 10 am-8 pm</dd>
                   </dl>
                 </li>
@@ -91,18 +91,18 @@
               </ul>
             </div>
             <div class="col-md-7 col-lg-8">
-              <h4 class="heading-decorated">Get in Touch</h4>
+              <h4 class="heading-decorated">Зворотній Зв'язок</h4>
               <!-- RD Mailform-->
-              <form class="rd-mailform rd-mailform_style-1" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
+              <form class="rd-mailform rd-mailform_style-1" data-form-output="form-output-global" data-form-type="contact" method="post">
                 <div class="form-wrap form-wrap_icon linear-icon-man">
-                  <input class="form-input" id="contact-name" type="text" name="name" data-constraints="@Required">
-                  <label class="form-label" for="contact-name">Your name</label>
+                  <input class="form-input" id="contact-name" type="text" name="name" required="required" data-constraints="@Required">
+                  <label class="form-label" for="contact-name">Ім'я</label>
                 </div>
                 <div class="form-wrap form-wrap_icon linear-icon-telephone">
-                  <input class="form-input" id="contact-phone" type="tel" name="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
-                  <label class="form-label" for="contact-email">Your phone</label>
+                  <input class="form-input" id="contact-phone" type="tel" name="tel" required="required" data-constraints="@Required" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+                  <label class="form-label" for="contact-phone">Телефон</label>
                 </div>
-                <button class="button button-primary" type="submit">send</button>
+                <button class="button button-primary" type="submit">Надіслати</button>
               </form>
             </div>
           </div>
@@ -113,21 +113,8 @@
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2572.196401413382!2d24.03896291554131!3d49.85755523778821!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473add04c89ed5e3%3A0xf07070dcae08de90!2sPromyslova%20St%2C%2027%2C%20L&#39;viv%2C%20L&#39;vivs&#39;ka%20oblast%2C%20Ukraine%2C%2079000!5e0!3m2!1sen!2spl!4v1614989346585!5m2!1sen!2spl" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
       </section>
       <!-- Page Footer-->
-      <footer class="footer-corporate bg-gray-darkest">
-        <div class="container">
-          <div class="footer-corporate__inner">
-            <p class="rights"><span>Extrafast</span><span>&nbsp;</span><span class="copyright-year"></span>. All Rights Reserved.<a href="#">Terms of Use and Privacy Policy</a></p>
-            <ul class="list-inline-xxs">
-              <li><a class="icon icon-xxs icon-primary fa fa-facebook" href="#"></a></li>
-              <li><a class="icon icon-xxs icon-primary fa fa-twitter" href="#"></a></li>
-              <li><a class="icon icon-xxs icon-primary fa fa-google-plus" href="#"></a></li>
-              <li><a class="icon icon-xxs icon-primary fa fa-vimeo" href="#"></a></li>
-              <li><a class="icon icon-xxs icon-primary fa fa-youtube" href="#"></a></li>
-              <li><a class="icon icon-xxs icon-primary fa fa-pinterest" href="#"></a></li>
-            </ul>
-          </div>
-        </div>
-      </footer>
+      <div th:replace="~{client/fragments/footer.html :: copyrightFrag}"></div>
+
     </div>
     <!-- Modal login window-->
     <div class="modal fade" id="modalLogin" role="dialog">
@@ -136,9 +123,9 @@
         <div class="modal-dialog__inner">
           <button class="close" type="button" data-dismiss="modal"></button>
           <div class="modal-dialog__content">
-            <h5 class="heading-decorated">Get in Touch</h5>
+            <h5 class="heading-decorated">Зворотній зв'язок</h5>
             <!-- RD Mailform-->
-            <form class="rd-mailform rd-mailform_style-1" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
+            <form class="rd-mailform rd-mailform_style-1" data-form-output="form-output-global" data-form-type="contact" method="post">
               <div class="form-wrap form-wrap_icon linear-icon-man">
                 <input class="form-input" id="contact-popup-name" type="text" name="name" data-constraints="@Required">
                 <label class="form-label" for="contact-popup-name">Your name</label>

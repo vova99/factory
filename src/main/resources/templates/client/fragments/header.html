@@ -8,20 +8,24 @@
                     <div class="rd-navbar-panel rd-navbar-search-lg_collapsable">
                         <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
                         <!-- RD Navbar Brand-->
-                        <div class="rd-navbar-brand"><a class="brand-name" href="index.html"><img src="../../../static/images/logo-150x37.png" width="150" height="37" alt=""></a></div>
+                        <div class="rd-navbar-brand"><a class="brand-name" href="/"><img th:src="@{/images/logo-150x37.png}" width="150" height="37" alt=""></a></div>
                     </div>
                     <!-- RD Navbar Nav-->
                     <div class="rd-navbar-nav-wrap rd-navbar-search_not-collapsable">
                         <!-- RD Navbar Nav-->
                         <div class="rd-navbar-search_collapsable">
                             <ul class="rd-navbar-nav">
-                                <li><a href="/">Головна</a>
+                                <li th:classappend="${activeLink?.equals('index')}?'active':''">
+                                    <a href="/">Головна</a>
                                 </li>
-                                <li><a href="/shop">Магазин</a>
+                                <li th:classappend="${activeLink?.equals('shop')}?'active':''">
+                                    <a href="/shop">Магазин</a>
                                 </li>
-                                <li><a href="/collaboration">Умови співпраці</a>
+                                <li th:classappend="${activeLink?.equals('collaboration')}?'active':''">
+                                    <a href="/collaboration" >Умови співпраці</a>
                                 </li>
-                                <li><a href="/contacts">Контакти</a>
+                                <li th:classappend="${activeLink?.equals('contacts')}?'active':''">
+                                    <a href="/contacts">Контакти</a>
                                 </li>
                             </ul>
                         </div>
