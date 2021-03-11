@@ -5276,7 +5276,7 @@ a.thumbnail-classic-title:hover {
 }
 
 .bg-overlay-darkest:before {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 .bg-accent-gradient {
@@ -9298,7 +9298,7 @@ h4 + .owl-carousel {
   position: fixed;
   text-align: left;
   top: 1px;
-  left: 56px;
+  right: 20px;
   height: 56px;
   display: -ms-flexbox;
   display: -webkit-flex;
@@ -9320,7 +9320,7 @@ h4 + .owl-carousel {
   z-index: 17;
 }
 .rd-navbar-fixed .rd-navbar-brand img {
-  height: 24px;
+  height: 45px;
   width: auto;
 }
 .rd-navbar-fixed .rd-navbar-panel {
