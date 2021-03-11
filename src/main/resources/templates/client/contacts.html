@@ -93,13 +93,13 @@
             <div class="col-md-7 col-lg-8">
               <h4 class="heading-decorated">Зворотній Зв'язок</h4>
               <!-- RD Mailform-->
-              <form class="rd-mailform rd-mailform_style-1" data-form-output="form-output-global" data-form-type="contact" method="post">
+              <form class="rd-mailform rd-mailform_style-1" data-form-output="form-output-global" data-form-type="contact" action="" method="post">
                 <div class="form-wrap form-wrap_icon linear-icon-man">
                   <input class="form-input" id="contact-name" type="text" name="name" required="required" data-constraints="@Required">
                   <label class="form-label" for="contact-name">Ім'я</label>
                 </div>
                 <div class="form-wrap form-wrap_icon linear-icon-telephone">
-                  <input class="form-input" id="contact-phone" type="tel" name="tel" required="required" data-constraints="@Required" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+                  <input class="form-input" id="contact-phone" type="tel" name="phone" required="required" data-constraints="@Required" pattern="[0-9]{10}">
                   <label class="form-label" for="contact-phone">Телефон</label>
                 </div>
                 <button class="button button-primary" type="submit">Надіслати</button>

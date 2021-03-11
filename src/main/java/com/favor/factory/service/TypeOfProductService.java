@@ -8,7 +8,7 @@ import java.util.List;
 public interface TypeOfProductService {
     TypeOfProduct save(TypeOfProduct type);
     TypeOfProduct update(TypeOfProduct type);
-    TypeOfProduct create(String nameType,String categoryName);
+    TypeOfProduct create(String nameType);
     TypeOfProduct findById(int id);
     List<TypeOfProduct> findAll();
     void deleteByID(int id);

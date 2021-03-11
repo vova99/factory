@@ -19,35 +19,29 @@ public class TypeOfProductController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/categories")
-    public String getAll(Model model, String categoryName){
+    public String getAll(Model model){
         model.addAttribute("types",typeOfProductService.findAll());
-        if(categoryName==null) {
-            model.addAttribute("tabName", "CLOTHES");
-        }else {
-            model.addAttribute("tabName", categoryName);
-        }
         return "/admin/categories";
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/addType")
-    public String addType(String categoryName, String nameOfType){
-        typeOfProductService.create(nameOfType,categoryName);
-        return "redirect:/admin/categories?categoryName="+categoryName;
+    public String addType(String nameOfType){
+        typeOfProductService.create(nameOfType);
+        return "redirect:/admin/categories";
     }
 
-//    @PreAuthorize("hasRole('ADMIN')")
-//    @PostMapping("/editType")
-//    public String editType(TypeOfProduct type){
-//        TypeOfProduct typeOfProduct = typeOfProductService.update(type);
-//        return "redirect:/admin/categories?categoryName="+typeOfProduct.getCategory().name();
-//    }
-//
-//    @PreAuthorize("hasRole('ADMIN')")
-//    @PostMapping("/deleteType")
-//    public String deleteType(int typeId){
-//        String name = typeOfProductService.findById(typeId).getCategory().name();
-//        typeOfProductService.deleteByID(typeId);
-//        return "redirect:/admin/categories?categoryName="+name;
-//    }
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/editType")
+    public String editType(TypeOfProduct type){
+        typeOfProductService.update(type);
+        return "redirect:/admin/categories";
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/deleteType")
+    public String deleteType(int typeId){
+        typeOfProductService.deleteByID(typeId);
+        return "redirect:/admin/categories";
+    }
 }

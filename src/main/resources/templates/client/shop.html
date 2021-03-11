@@ -197,22 +197,22 @@
         <div class="modal-dialog__inner">
           <button class="close" type="button" data-dismiss="modal"></button>
           <div class="modal-dialog__content">
-            <h5 class="heading-decorated">Get in Touch</h5>
+            <h5 class="heading-decorated">Форма зворотнього зв'язку</h5>
             <!-- RD Mailform-->
-            <form class="rd-mailform rd-mailform_style-1" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
+            <form class="rd-mailform rd-mailform_style-1" data-form-output="form-output-global" data-form-type="contact" method="post" action="/contacts">
               <div class="form-wrap form-wrap_icon linear-icon-man">
                 <input class="form-input" id="contact-popup-name" type="text" name="name" data-constraints="@Required">
-                <label class="form-label" for="contact-popup-name">Your name</label>
+                <label class="form-label" for="contact-popup-name">Ім'я</label>
               </div>
-              <div class="form-wrap form-wrap_icon linear-icon-envelope">
-                <input class="form-input" id="contact-popup-email" type="email" name="email" data-constraints="@Email @Required">
-                <label class="form-label" for="contact-popup-email">Your e-mail</label>
+              <div class="form-wrap form-wrap_icon linear-icon-telephone">
+                <input class="form-input" id="contact-popup-email" type="tel" name="phone" data-constraints="@Required">
+                <label class="form-label" for="contact-popup-email">Телефон</label>
               </div>
               <div class="form-wrap form-wrap_icon linear-icon-feather">
-                <textarea class="form-input" id="contact-popup-message" name="message" data-constraints="@Required"></textarea>
-                <label class="form-label" for="contact-popup-message">Your message</label>
+                <textarea class="form-input" id="contact-popup-message" name="description"></textarea>
+                <label class="form-label" for="contact-popup-message">Опис</label>
               </div>
-              <button class="button button-primary" type="submit">send</button>
+              <button class="button button-primary" type="submit">надіслати</button>
             </form>
           </div>
         </div>

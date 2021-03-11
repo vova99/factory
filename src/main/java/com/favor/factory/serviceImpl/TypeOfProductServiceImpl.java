@@ -29,8 +29,8 @@ public class TypeOfProductServiceImpl implements TypeOfProductService {
     }
 
     @Override
-    public TypeOfProduct create(String nameType, String categoryName) {
-        if(!nameType.isEmpty() && !categoryName.isEmpty()){
+    public TypeOfProduct create(String nameType) {
+        if(!nameType.isEmpty()){
             TypeOfProduct typeOfProduct = new TypeOfProduct();
             typeOfProduct.setName(nameType);
             return typeOfProductJPA.save(typeOfProduct);

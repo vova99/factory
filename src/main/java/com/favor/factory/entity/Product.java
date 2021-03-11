@@ -4,7 +4,6 @@ import lombok.Data;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 
 @Entity
 @Data
@@ -13,8 +12,8 @@ public class Product {
     private long id;
 
     private String name;
+    private String article;
     private String season;
-    private BigDecimal price;
 
     @Lob
     @Type(type = "org.hibernate.type.ImageType")
