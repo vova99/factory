@@ -12,6 +12,7 @@ public interface ProductService {
     Product update(Product product, MultipartFile multipartFile);
     Product findById(long id);
     Product changeStatus(long id, boolean status);
+    List<Product> findByTypeOfProductId(int id);
     List<Product> findAll();
     List<Product> findByStatus(StatusOfEntity status);
     List<Product> findSameProducts(Product product);

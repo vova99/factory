@@ -93,6 +93,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<Product> findByTypeOfProductId(int id) {
+        return productJPA.findByTypeOfProductId(id);
+    }
+
+    @Override
     public List<Product> findAll() {
         return productJPA.findAll();
     }

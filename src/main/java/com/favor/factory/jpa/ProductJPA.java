@@ -14,6 +14,8 @@ public interface ProductJPA extends JpaRepository<Product,Long> {
     @Query("select obj from Product obj where obj.statusOfEntity=?1")
     List<Product> findByStatus(StatusOfEntity status);
 
+    List<Product> findByTypeOfProductId(int id);
+
     List<Product> findFirst10ByTypeOfProductId(int typeId);
 
 }
