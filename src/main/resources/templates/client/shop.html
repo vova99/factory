@@ -69,7 +69,7 @@
             <div class="col-sm-12">
               <ul class="list-nav isotope-filters isotope-filters-horizontal">
                 <li><a class="active" data-isotope-filter="*" data-isotope-group="gallery" href="#">All</a></li>
-                <li th:each="t : ${types}">
+                <li th:each="t : ${types}" th:id="${t.getId()}">
                   <a th:data-isotope-filter="${t.getId()}" data-isotope-group="gallery" href="#" th:text="${t.getName()}">Web Design</a>
                 </li>
                 <li><a data-isotope-filter="Category 1" data-isotope-group="gallery" href="#">Web Design</a></li>
