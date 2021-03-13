@@ -96,7 +96,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> getFilteredProducts(Integer type, Integer size, Integer page) {
-        if(type==null){
+        if(type==null || type<=0){
             return findAll();
         }
         if(size==null){size=12;}
@@ -113,7 +113,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public int getCountOfElements(Integer type, Integer size, Integer page) {
-        if(type==null){
+        if(type==null || type<=0){
             return findAll().size();
         }
         if(size==null){size=12;}
