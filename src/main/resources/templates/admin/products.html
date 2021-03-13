@@ -37,9 +37,9 @@
                             <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
                         </div>
                         <div class="nk-header-brand d-xl-none">
-                            <a href="#" class="logo-link">
-                                <img class="logo-light logo-img" th:src="@{/admin/src/images/logo.png}" th:srcset="@{/admin/src/images/logo.png}" alt="logo">
-                                <img class="logo-dark logo-img" th:src="@{/admin/src/images/logo-dark.png}" th:srcset="@{/admin/src/images/logo-dark.png}" alt="logo-dark">
+                            <a href="/admin/products" class="logo-link">
+                                <img class="logo-light logo-img" th:src="@{/images/logo-light.png}" th:srcset="@{/images/logo-light.png}" alt="logo">
+                                <img class="logo-dark logo-img" th:src="@{/images/logo-dark.png}" th:srcset="@{/images/logo-dark.png}" alt="logo-dark">
                             </a>
                         </div><!-- .nk-header-brand -->
 
@@ -85,14 +85,12 @@
                                                 <thead>
                                                 <tr class="nk-tb-item nk-tb-head">
                                                     <th class="nk-tb-col">Зображення</th>
-                                                    <th class="nk-tb-col"><span class="sub-text">Назва</span></th>
                                                     <th class="nk-tb-col tb-col-md"><span class="sub-text">Артикул</span></th>
                                                     <th class="nk-tb-col tb-col-md"><span class="sub-text">Ціна</span></th>
                                                     <th class="nk-tb-col tb-col-lg"><span class="sub-text">Статус</span></th>
                                                     <th class="nk-tb-col tb-col-hide"><span class="sub-text">Опис</span></th>
                                                     <th class="nk-tb-col tb-col-hide"><span class="sub-text">Сезон</span></th>
                                                     <th class="nk-tb-col tb-col-hide"><span class="sub-text">Тип</span></th>
-                                                    <th class="nk-tb-col tb-col-hide"><span class="sub-text">Розміри</span></th>
                                                     <th class="nk-tb-col"><span class="sub-text" style="text-align: right; padding-right: 2rem;">Дії</span></th>
                                                 </tr>
                                                 </thead>
@@ -110,9 +108,9 @@
                                                     <td class="nk-tb-col tb-col-md">
                                                         <span th:text="${p.getArticle()}">Article</span>
                                                     </td>
-                                                    <td class="nk-tb-col tb-col-md">
-                                                        <span th:text="${p.getPrice()}"></span>
-                                                    </td>
+<!--                                                    <td class="nk-tb-col tb-col-md">-->
+<!--                                                        <span th:text="${p.getPrice()}"></span>-->
+<!--                                                    </td>-->
                                                     <td class="nk-tb-col tb-col-lg">
                                                         <span class="tb-status text-success" th:if="${p?.getStatusOfEntity()?.name()?.equals('ACTIVE')}">Active</span>
                                                         <span class="tb-status text-danger" th:if="${p?.getStatusOfEntity()?.name()?.equals('ARCHIVED')}">Archive</span>
@@ -120,9 +118,9 @@
                                                     <td class="nk-tb-col tb-col-lg">
                                                         <span th:text=""></span>
                                                     </td>
-                                                    <td class="nk-tb-col tb-col-hide">
-                                                        <span th:text="${p.getDescription()}"></span>
-                                                    </td>
+<!--                                                    <td class="nk-tb-col tb-col-hide">-->
+<!--                                                        <span th:text="${p.getDescription()}"></span>-->
+<!--                                                    </td>-->
                                                     <td class="nk-tb-col tb-col-hide">
                                                         <span th:text="${p.getSeason()}"></span>
                                                     </td>
@@ -194,86 +192,51 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label class="form-label" for="productName">Назва продукту</label>
-                                    <div class="form-control-wrap">
-                                        <input type="text" class="form-control" id="productName" placeholder="Назва..." name="name">
-                                    </div>
-                                </div>
+<!--                                <div class="form-group">-->
+<!--                                    <label class="form-label" for="productName">Назва продукту</label>-->
+<!--                                    <div class="form-control-wrap">-->
+<!--                                        <input type="text" class="form-control" id="productName" placeholder="Назва..." name="name">-->
+<!--                                    </div>-->
+<!--                                </div>-->
 
-                                <div class="form-group">
-                                    <label class="form-label" for="productDescription">Опис</label>
-                                    <div class="form-control-wrap">
-                                        <textarea class="form-control" id="productDescription" placeholder="Введіть текст..." name="description"></textarea>
-                                    </div>
-                                </div>
+<!--                                <div class="form-group">-->
+<!--                                    <label class="form-label" for="productDescription">Опис</label>-->
+<!--                                    <div class="form-control-wrap">-->
+<!--                                        <textarea class="form-control" id="productDescription" placeholder="Введіть текст..." name="description"></textarea>-->
+<!--                                    </div>-->
+<!--                                </div>-->
 
-                                <div class="row form-group mb-md-0">
-                                    <div class="col-md-6 form-group">
-                                        <div class="form-control-wrap">
-                                            <div class="form-text-hint" style="top: 50%;">
-                                                <span class="overline-title">UAH</span>
-                                            </div>
-                                            <label class="form-label" for="productPrice">Ціна</label>
-                                            <input type="text" pattern="[0-9]*\.?[0-9]*" class="form-control" id="productPrice" placeholder="Не заповнено..." name="price" value="0.00">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <label class="form-label">Категорія</label>
-                                        <div class="form-control-wrap">
-                                            <select class="form-select form-control form-control-lg" id="mainCategories" name="category">
-                                                <option value="CLOTHES">Одяг</option>
-                                                <option value="SHOES">Взуття</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Одяг start -->
-                                <div class="form-group row mb-md-0" id="clothesDetails">
-                                    <div class="col-12 form-group">
-                                        <label class="form-label">Сезон</label>
-                                        <div class="form-control-wrap">
-                                            <select class="form-select form-control form-control-lg" id="selectClothesSeason" onchange="setSingleHiddenValue(this.id, $(this).siblings('input').prop('id'))">
-                                                <option value="spring">Весна</option>
-                                                <option value="summer">Літо</option>
-                                                <option value="autumn">Осінь</option>
-                                                <option value="winter">Зима</option>
-                                                <option value="demiseason">Демісезон</option>
-                                            </select>
-                                            <input type="hidden" id="selectHiddenClothesSeason" name="season" value=""/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Одяг end -->
+<!--                                <div class="row form-group mb-md-0">-->
+<!--                                    <div class="col-md-12 form-group">-->
+<!--                                        <div class="form-control-wrap">-->
+<!--                                            <div class="form-text-hint" style="top: 50%;">-->
+<!--                                                <span class="overline-title">UAH</span>-->
+<!--                                            </div>-->
+<!--                                            <label class="form-label" for="productPrice">Ціна</label>-->
+<!--                                            <input type="text" pattern="[0-9]*\.?[0-9]*" class="form-control" id="productPrice" placeholder="Не заповнено..." name="price" value="0.00">-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
                                 <!-- Взуття start-->
-                                <div class="form-group row mb-md-0" id="shoesDetails" style="display: none;">
-                                    <div class="col-12 form-group">
-                                        <label class="form-label">Сезон</label>
-                                        <div class="form-control-wrap">
-                                            <select class="form-select form-control form-control-lg" id="selectShoesSeason" onchange="setSingleHiddenValue(this.id, $(this).siblings('input').prop('id'))">
-                                                <option value="spring">Весна</option>
-                                                <option value="summer">Літо</option>
-                                                <option value="autumn">Осінь</option>
-                                                <option value="winter">Зима</option>
-                                                <option value="demiseason">Демісезон</option>
-                                            </select>
-                                            <input type="hidden" id="selectHiddenShoesSeason" name="season" value=""/>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 form-group">
+                                <div class="form-group row" id="shoesDetails">
+<!--                                    <div class="col-12 form-group">-->
+<!--                                        <label class="form-label">Сезон</label>-->
+<!--                                        <div class="form-control-wrap">-->
+<!--                                            <select class="form-select form-control form-control-lg" id="selectShoesSeason" onchange="setSingleHiddenValue(this.id, $(this).siblings('input').prop('id'))">-->
+<!--                                                <option value="spring">Весна</option>-->
+<!--                                                <option value="summer">Літо</option>-->
+<!--                                                <option value="autumn">Осінь</option>-->
+<!--                                                <option value="winter">Зима</option>-->
+<!--                                                <option value="demiseason">Демісезон</option>-->
+<!--                                            </select>-->
+<!--                                            <input type="hidden" id="selectHiddenShoesSeason" name="season" value=""/>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                    <div class="col-md-12 form-group">
                                         <label class="form-label">Тип</label>
                                         <div class="form-control-wrap">
                                             <select class="form-select form-control form-control-lg" name="typeOfProduct.id">
-                                                <option th:each="t :${types}" th:value="${t.getId()}" th:text="${t.getName()}"
-                                                th:if=""></option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <label class="form-label">Розміри</label>
-                                        <div class="form-control-wrap">
-                                            <select class="form-select" multiple="multiple" data-placeholder="Select Multiple options" name="sizes">
-                                                <option th:each="s : ${sizes}"  th:value="${s.getId()}" th:text="${s.getSize()}"></option>
+<!--                                                <option th:each="t :${types}" th:value="${t.getId()}" th:text="${t.getName()}" th:if=""></option>-->
                                             </select>
                                         </div>
                                     </div>
@@ -291,130 +254,130 @@
             <!-- Adding end -->
 
             <!-- Edit start -->
-            <div class="modal fade" tabindex="-1" role="dialog" id="editProductModal" aria-modal="true">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <a href="#" class="close" data-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
-                        <div class="modal-body modal-body-md">
-                            <h4 class="title">Редагування</h4>
-                            <br>
-                            <form action="/admin/editProduct" method="post" enctype="multipart/form-data">
-                                <input type="text" id="selectedForEditItem" hidden="" name="id">
-                                <div class="row form-group mb-md-0">
-                                    <div class="col-md-6 form-group">
-                                        <!-- <div class="form-group"> -->
-                                        <label class="form-label" for="editProductImage">Зображення</label>
-                                        <div class="form-control-wrap">
-                                            <div class="custom-file">
-                                                <input type="file" multiple class="custom-file-input" id="editProductImage" name="multipartFile">
-                                                <label class="custom-file-label" for="editProductImage"></label>
-                                            </div>
-                                        </div>
-                                        <!-- </div> -->
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <!-- <div class="form-group"> -->
-                                        <label class="form-label" for="editArticleNumber">Артикул</label>
-                                        <div class="form-control-wrap">
-                                            <input type="text" class="form-control" id="editArticleNumber" name="article" placeholder="Артикул...">
-                                        </div>
-                                        <!-- </div> -->
-                                    </div>
-                                </div>
+<!--            <div class="modal fade" tabindex="-1" role="dialog" id="editProductModal" aria-modal="true">-->
+<!--                <div class="modal-dialog modal-lg" role="document">-->
+<!--                    <div class="modal-content">-->
+<!--                        <a href="#" class="close" data-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>-->
+<!--                        <div class="modal-body modal-body-md">-->
+<!--                            <h4 class="title">Редагування</h4>-->
+<!--                            <br>-->
+<!--                            <form action="/admin/editProduct" method="post" enctype="multipart/form-data">-->
+<!--                                <input type="text" id="selectedForEditItem" hidden="" name="id">-->
+<!--                                <div class="row form-group mb-md-0">-->
+<!--                                    <div class="col-md-6 form-group">-->
+<!--                                        &lt;!&ndash; <div class="form-group"> &ndash;&gt;-->
+<!--                                        <label class="form-label" for="editProductImage">Зображення</label>-->
+<!--                                        <div class="form-control-wrap">-->
+<!--                                            <div class="custom-file">-->
+<!--                                                <input type="file" multiple class="custom-file-input" id="editProductImage" name="multipartFile">-->
+<!--                                                <label class="custom-file-label" for="editProductImage"></label>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        &lt;!&ndash; </div> &ndash;&gt;-->
+<!--                                    </div>-->
+<!--                                    <div class="col-md-6 form-group">-->
+<!--                                        &lt;!&ndash; <div class="form-group"> &ndash;&gt;-->
+<!--                                        <label class="form-label" for="editArticleNumber">Артикул</label>-->
+<!--                                        <div class="form-control-wrap">-->
+<!--                                            <input type="text" class="form-control" id="editArticleNumber" name="article" placeholder="Артикул...">-->
+<!--                                        </div>-->
+<!--                                        &lt;!&ndash; </div> &ndash;&gt;-->
+<!--                                    </div>-->
+<!--                                </div>-->
 
-                                <div class="form-group">
-                                    <label class="form-label" for="editProductName">Назва продукту</label>
-                                    <div class="form-control-wrap">
-                                        <input type="text" class="form-control" id="editProductName" placeholder="Назва..." name="name">
-                                    </div>
-                                </div>
+<!--                                <div class="form-group">-->
+<!--                                    <label class="form-label" for="editProductName">Назва продукту</label>-->
+<!--                                    <div class="form-control-wrap">-->
+<!--                                        <input type="text" class="form-control" id="editProductName" placeholder="Назва..." name="name">-->
+<!--                                    </div>-->
+<!--                                </div>-->
 
-                                <div class="form-group">
-                                    <label class="form-label" for="editProductDescription">Опис</label>
-                                    <div class="form-control-wrap">
-                                        <textarea class="form-control" id="editProductDescription" placeholder="Введіть текст..." name="description"></textarea>
-                                    </div>
-                                </div>
+<!--                                <div class="form-group">-->
+<!--                                    <label class="form-label" for="editProductDescription">Опис</label>-->
+<!--                                    <div class="form-control-wrap">-->
+<!--                                        <textarea class="form-control" id="editProductDescription" placeholder="Введіть текст..." name="description"></textarea>-->
+<!--                                    </div>-->
+<!--                                </div>-->
 
-                                <div class="row form-group mb-md-0">
-                                    <div class="col-md-6 form-group">
-                                        <div class="form-control-wrap">
-                                            <div class="form-text-hint" style="top: 50%;">
-                                                <span class="overline-title">UAH</span>
-                                            </div>
-                                            <label class="form-label" for="editProductPrice">Ціна</label>
-                                            <input type="text" class="form-control" id="editProductPrice" name="price" placeholder="Не заповнено...">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <label class="form-label">Категорія</label>
-                                        <div class="form-control-wrap">
-                                            <select class="form-select form-control form-control-lg" id="mainCategoriesEdit" name="category">
-                                                <option value="CLOTHES">Одяг</option>
-                                                <option value="SHOES">Взуття</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Одяг start -->
-                                <div class="form-group row mb-md-0" id="clothesDetailsEdit">
-                                    <div class="col-12 form-group">
-                                        <label class="form-label">Сезон</label>
-                                        <div class="form-control-wrap">
-                                            <select class="form-select form-control form-control-lg" id="selectClothesSeasonEdit" onchange="setSingleHiddenValue(this.id, $(this).siblings('input').prop('id'))">
-                                                <option value="spring">Весна</option>
-                                                <option value="summer">Літо</option>
-                                                <option value="autumn">Осінь</option>
-                                                <option value="winter">Зима</option>
-                                                <option value="demiseason">Демісезон</option>
-                                            </select>
-                                            <input type="hidden" id="selectHiddenClothesSeasonEdit" name="season"/>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <label class="form-label">Тип</label>
-                                        <div class="form-control-wrap">
-                                            <select class="form-select form-control form-control-lg" name="typeOfProduct.id" id="selectClothesTypeEdit">
-                                                <option th:each="t :${types}" th:value="${t.getId()}" th:text="${t.getName()}"></option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Одяг end -->
-                                <!-- Взуття start-->
-                                <div class="form-group row mb-md-0" id="shoesDetailsEdit" style="display: none;">
-                                    <div class="col-12 form-group">
-                                        <label class="form-label">Сезон</label>
-                                        <div class="form-control-wrap">
-                                            <select class="form-select form-control form-control-lg" id="selectShoesSeasonEdit" onchange="setSingleHiddenValue(this.id, $(this).siblings('input').prop('id'))">
-                                                <option value="spring">Весна</option>
-                                                <option value="summer">Літо</option>
-                                                <option value="autumn">Осінь</option>
-                                                <option value="winter">Зима</option>
-                                                <option value="demiseason">Демісезон</option>
-                                            </select>
-                                            <input type="hidden" id="selectHiddenShoesSeasonEdit" name="season"/>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <label class="form-label">Тип</label>
-                                        <div class="form-control-wrap">
-                                            <select class="form-select form-control form-control-lg" name="typeOfProduct.id" id="selectShoesTypesEdit">
-                                                <option th:each="t :${types}" th:value="${t.getId()}" th:text="${t.getName()}"></option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Взуття end -->
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-outline-primary">Зберегти</button>
-                                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Скасувати</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!--                                <div class="row form-group mb-md-0">-->
+<!--                                    <div class="col-md-6 form-group">-->
+<!--                                        <div class="form-control-wrap">-->
+<!--                                            <div class="form-text-hint" style="top: 50%;">-->
+<!--                                                <span class="overline-title">UAH</span>-->
+<!--                                            </div>-->
+<!--                                            <label class="form-label" for="editProductPrice">Ціна</label>-->
+<!--                                            <input type="text" class="form-control" id="editProductPrice" name="price" placeholder="Не заповнено...">-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-md-6 form-group">-->
+<!--                                        <label class="form-label">Категорія</label>-->
+<!--                                        <div class="form-control-wrap">-->
+<!--                                            <select class="form-select form-control form-control-lg" id="mainCategoriesEdit" name="category">-->
+<!--                                                <option value="CLOTHES">Одяг</option>-->
+<!--                                                <option value="SHOES">Взуття</option>-->
+<!--                                            </select>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                &lt;!&ndash; Одяг start &ndash;&gt;-->
+<!--                                <div class="form-group row mb-md-0" id="clothesDetailsEdit">-->
+<!--                                    <div class="col-12 form-group">-->
+<!--                                        <label class="form-label">Сезон</label>-->
+<!--                                        <div class="form-control-wrap">-->
+<!--                                            <select class="form-select form-control form-control-lg" id="selectClothesSeasonEdit" onchange="setSingleHiddenValue(this.id, $(this).siblings('input').prop('id'))">-->
+<!--                                                <option value="spring">Весна</option>-->
+<!--                                                <option value="summer">Літо</option>-->
+<!--                                                <option value="autumn">Осінь</option>-->
+<!--                                                <option value="winter">Зима</option>-->
+<!--                                                <option value="demiseason">Демісезон</option>-->
+<!--                                            </select>-->
+<!--                                            <input type="hidden" id="selectHiddenClothesSeasonEdit" name="season"/>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-md-6 form-group">-->
+<!--                                        <label class="form-label">Тип</label>-->
+<!--                                        <div class="form-control-wrap">-->
+<!--                                            <select class="form-select form-control form-control-lg" name="typeOfProduct.id" id="selectClothesTypeEdit">-->
+<!--                                                <option th:each="t :${types}" th:value="${t.getId()}" th:text="${t.getName()}"></option>-->
+<!--                                            </select>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                &lt;!&ndash; Одяг end &ndash;&gt;-->
+<!--                                &lt;!&ndash; Взуття start&ndash;&gt;-->
+<!--                                <div class="form-group row mb-md-0" id="shoesDetailsEdit" style="display: none;">-->
+<!--                                    <div class="col-12 form-group">-->
+<!--                                        <label class="form-label">Сезон</label>-->
+<!--                                        <div class="form-control-wrap">-->
+<!--                                            <select class="form-select form-control form-control-lg" id="selectShoesSeasonEdit" onchange="setSingleHiddenValue(this.id, $(this).siblings('input').prop('id'))">-->
+<!--                                                <option value="spring">Весна</option>-->
+<!--                                                <option value="summer">Літо</option>-->
+<!--                                                <option value="autumn">Осінь</option>-->
+<!--                                                <option value="winter">Зима</option>-->
+<!--                                                <option value="demiseason">Демісезон</option>-->
+<!--                                            </select>-->
+<!--                                            <input type="hidden" id="selectHiddenShoesSeasonEdit" name="season"/>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-md-6 form-group">-->
+<!--                                        <label class="form-label">Тип</label>-->
+<!--                                        <div class="form-control-wrap">-->
+<!--                                            <select class="form-select form-control form-control-lg" name="typeOfProduct.id" id="selectShoesTypesEdit">-->
+<!--                                                <option th:each="t :${types}" th:value="${t.getId()}" th:text="${t.getName()}"></option>-->
+<!--                                            </select>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                &lt;!&ndash; Взуття end &ndash;&gt;-->
+<!--                                <div class="form-group">-->
+<!--                                    <button type="submit" class="btn btn-outline-primary">Зберегти</button>-->
+<!--                                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Скасувати</button>-->
+<!--                                </div>-->
+<!--                            </form>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
             <!-- Edit end -->
 
             <!-- Change status start -->
@@ -475,7 +438,7 @@
             <div class="nk-footer">
                 <div class="container-fluid">
                     <div class="nk-footer-wrap">
-                        <div class="nk-footer-copyright"> &copy; 2020 Oksana Piekna</a>
+                        <div class="nk-footer-copyright"> &copy; <span id="year"></span> Oksana Piekna
                         </div>
                     </div>
                 </div>
@@ -492,48 +455,17 @@
 <script th:src="@{/js/scripts.js}"></script>
 <script th:src="@{/js/example-sweetalert.js}"></script>
 <script>
-    $('#addProductModal').on('shown.bs.modal', function () {
-        setSingleHiddenValue('selectClothesSeason', 'selectHiddenShoesSeason');
-        setSingleHiddenValue('selectShoesSeason', 'selectHiddenShoesSeason');
-        console.log("Changed!");
+    $( document ).ready(function() {
+        document.getElementById("year").innerHTML = new Date().getFullYear();
     });
 
-    $('#mainCategories').on('change', function (e) {
-        let optionSelected = $("option:selected", this);
-        let selectedValue = this.value;
 
-        console.log("OS: "+optionSelected+"\nSV: "+selectedValue);
+    // $('#addProductModal').on('shown.bs.modal', function () {
+    //     setSingleHiddenValue('selectClothesSeason', 'selectHiddenShoesSeason');
+    //     setSingleHiddenValue('selectShoesSeason', 'selectHiddenShoesSeason');
+    //     console.log("Changed!");
+    // });
 
-        if (selectedValue === "CLOTHES"){
-            $('#clothesDetails').show();
-            $('#shoesDetails').hide();
-        }else if (selectedValue === "SHOES"){
-            $('#clothesDetails').hide();
-            $('#shoesDetails').show();
-        }
-    });
-
-    $('#mainCategoriesEdit').on('change', function (e) {
-        let optionSelected = $("option:selected", this);
-        let selectedValue = this.value;
-
-        console.log("OS: "+optionSelected+"\nSV: "+selectedValue);
-
-        if (selectedValue === "CLOTHES"){
-            $('#clothesDetailsEdit').show();
-            $('#shoesDetailsEdit').hide();
-        }else if (selectedValue === "SHOES"){
-            $('#clothesDetailsEdit').hide();
-            $('#shoesDetailsEdit').show();
-        }
-    });
-
-    function setSingleHiddenValue(idVal, idHiddenVal) {
-        console.log("1. selectId: "+$('#'+idVal).val()+"; hiddenId: "+ $("#"+idHiddenVal).val());
-        // $("#"+idHiddenVal).val($('#'+idVal).val().toString().split(',')[0]);
-        $("#"+idHiddenVal).val($('#'+idVal).val().toString());
-        console.log("2. selectId: "+$('#'+idVal).val()+"; hiddenId: "+ $("#"+idHiddenVal).val());
-    }
 
 
     function showEditProductModal(btnObj) {

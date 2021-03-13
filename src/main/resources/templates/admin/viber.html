@@ -38,9 +38,9 @@
                                     class="icon ni ni-menu"></em></a>
                         </div>
                         <div class="nk-header-brand d-xl-none">
-                            <a href="html/crypto/index.html" class="logo-link">
-                                <img class="logo-light logo-img" th:src="@{/admin/src/images/logo.png}" th:srcset="@{/admin/src/images/logo.png}" alt="logo">
-                                <img class="logo-dark logo-img" th:src="@{/admin/src/images/logo-dark.png}" th:srcset="@{/admin/src/images/logo-dark.png}" alt="logo-dark">
+                            <a href="/admin/products" class="logo-link">
+                                <img class="logo-light logo-img" th:src="@{/images/logo.png}" th:srcset="@{/images/logo.png}" alt="logo">
+                                <img class="logo-dark logo-img" th:src="@{/images/logo-dark.png}" th:srcset="@{/images/logo-dark.png}" alt="logo-dark">
                             </a>
                         </div><!-- .nk-header-brand -->
 
@@ -107,7 +107,7 @@
             <div class="nk-footer">
                 <div class="container-fluid">
                     <div class="nk-footer-wrap">
-                        <div class="nk-footer-copyright"> &copy; 2020 Oksana Piekna</a>
+                        <div class="nk-footer-copyright"> &copy; <span id="year"></span> Oksana Piekna
                         </div>
                     </div>
                 </div>
@@ -123,6 +123,11 @@
 <script th:src="@{/js/bundle.js}"></script>
 <script th:src="@{/js/scripts.js}"></script>
 <script th:src="@{/js/example-sweetalert.js}"></script>
+<script>
+    $( document ).ready(function() {
+        document.getElementById("year").innerHTML = new Date().getFullYear();
+    });
+</script>
 
 </body>
 
