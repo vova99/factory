@@ -34,7 +34,6 @@ public class ProductServiceImpl implements ProductService {
     public Product save(Product product, MultipartFile multipartFile) {
         if(multipartFile!=null && product!=null){
             try {
-                product.setSeason(product.getSeason().replace(",",""));
                 product.setImg(multipartFile.getBytes());
                 product.setImgName(multipartFile.getOriginalFilename());
                 product.setImgType(multipartFile.getContentType());
@@ -54,8 +53,6 @@ public class ProductServiceImpl implements ProductService {
         if(product!=null){
             Product productDB = productJPA.findById(product.getId()).orElse(new Product());
 
-            productDB.setName(product.getName());
-            productDB.setSeason(product.getSeason().replace(",",""));
             productDB.setTypeOfProduct(product.getTypeOfProduct());
             System.out.println("Mulipart "+multipartFile.getSize());
             if(multipartFile.getSize()>0){

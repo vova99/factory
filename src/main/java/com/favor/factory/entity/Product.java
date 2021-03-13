@@ -9,11 +9,10 @@ import javax.persistence.*;
 @Data
 public class Product {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String name;
     private String article;
-    private String season;
 
     @Lob
     @Type(type = "org.hibernate.type.ImageType")
@@ -25,5 +24,5 @@ public class Product {
     private TypeOfProduct typeOfProduct;
 
     @Enumerated(EnumType.STRING)
-    private StatusOfEntity statusOfEntity;
+    private StatusOfEntity statusOfEntity=StatusOfEntity.ACTIVE;
 }
