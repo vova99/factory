@@ -14,6 +14,8 @@ public interface ProductService {
     Product changeStatus(long id, boolean status);
     List<Product> findByTypeOfProductId(int id);
     List<Product> findAll();
+    List<Product> getFilteredProducts(Integer type, Integer size,Integer page);
+    int getCountOfElements(Integer type, Integer size,Integer page);
     List<Product> findByStatus(StatusOfEntity status);
     List<Product> findSameProducts(Product product);
     void deleteByID(long id);

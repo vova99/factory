@@ -2,21 +2,16 @@ package com.favor.factory.serviceImpl;
 
 import com.favor.factory.entity.Product;
 import com.favor.factory.entity.StatusOfEntity;
-import com.favor.factory.entity.TypeOfProduct;
 import com.favor.factory.jpa.ProductJPA;
 import com.favor.factory.service.ProductService;
 import com.favor.factory.service.TypeOfProductService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -97,6 +92,35 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> findAll() {
         return productJPA.findAll();
+    }
+
+    @Override
+    public List<Product> getFilteredProducts(Integer type, Integer size, Integer page) {
+        if(type==null){
+            return findAll();
+        }
+        if(size==null){size=12;}
+        if(page==null){page=0;}
+
+        List<Product> products = productJPA.findByTypeOfProductId(type);
+
+        Pageable paging = PageRequest.of(page,size);
+        int start = Math.min((int)paging.getOffset(), products.size());
+        int end = Math.min((start + paging.getPageSize()), products.size());
+
+        return products.subList(start,end);
+    }
+
+    @Override
+    public int getCountOfElements(Integer type, Integer size, Integer page) {
+        if(type==null){
+            return findAll().size();
+        }
+        if(size==null){size=12;}
+        if(page==null){page=0;}
+
+
+        return productJPA.findByTypeOfProductId(type).size();
     }
 
     @Override
