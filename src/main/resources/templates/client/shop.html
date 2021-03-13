@@ -67,41 +67,15 @@
           <h4 class="heading-decorated">Магазин</h4>
           <div class="isotope-wrap row row-70">
             <div class="col-sm-12">
-              <ul class="list-nav isotope-filters isotope-filters-horizontal">
-                <li><a class="active" data-isotope-filter="*" data-isotope-group="gallery" href="#">All</a></li>
+              <ul class="list-nav isotope-filters isotope-filters-horizontal" id="typesOfShoesList">
+                <li><a class="active" data-isotope-filter="*" data-isotope-group="gallery" th:id="-1" href="#" onclick="getData()">All</a></li>
                 <li th:each="t : ${types}" th:id="${t.getId()}">
-                  <a th:data-isotope-filter="${t.getId()}" data-isotope-group="gallery" href="#" th:text="${t.getName()}">Web Design</a>
+                  <a th:data-isotope-filter="${t.getId()}" data-isotope-group="gallery" href="#" th:text="${t.getName()}" th:id="${t.getId()}" onclick="getData()">Web Design</a>
                 </li>
-                <li><a data-isotope-filter="Category 1" data-isotope-group="gallery" href="#">Web Design</a></li>
-                <li><a data-isotope-filter="Category 2" data-isotope-group="gallery" href="#">Branding</a></li>
-                <li><a data-isotope-filter="Category 1" data-isotope-group="gallery" href="#">Web Design</a></li>
-                <li><a data-isotope-filter="Category 2" data-isotope-group="gallery" href="#">Branding</a></li>
-                <li><a data-isotope-filter="Category 1" data-isotope-group="gallery" href="#">Web Design</a></li>
-                <li><a data-isotope-filter="Category 2" data-isotope-group="gallery" href="#">Branding</a></li>
-                <li><a data-isotope-filter="Category 1" data-isotope-group="gallery" href="#">Web Design</a></li>
-                <li><a data-isotope-filter="Category 2" data-isotope-group="gallery" href="#">Branding</a></li>
-                <li><a data-isotope-filter="Category 1" data-isotope-group="gallery" href="#">Web Design</a></li>
-                <li><a data-isotope-filter="Category 2" data-isotope-group="gallery" href="#">Branding</a></li>
-                <li><a data-isotope-filter="Category 1" data-isotope-group="gallery" href="#">Web Design</a></li>
-                <li><a data-isotope-filter="Category 2" data-isotope-group="gallery" href="#">Branding</a></li>
               </ul>
-              <div class="isotope row" data-isotope-layout="fitRows" data-isotope-group="gallery">
+              <div class="isotope row" data-isotope-layout="fitRows" data-isotope-group="gallery" id="productsContainer">
                 <!--       SINGLE ITEM START         -->
-                <div class="col-12 col-md-6 col-lg-4 isotope-item" data-filter="Category 1">
-                  <a class="img-thumbnail-variant-3" href="images/slider-slide-14-1280x1920.jpg"  data-toggle="modal" data-target="#modalLogin">
-                    <figure>
-                      <img src="images/portfolio-2-418x315.jpg" alt="" width="418" height="315"/>
-                    </figure>
-                    <div class="caption"><span class="icon hover-top-element linear-icon-cart"></span>
-                      <ul class="list-inline-tag hover-top-element">
-                        <li>Артикул</li>
-                      </ul>
-                      <p class="heading-5 hover-top-element">#artikul</p>
-                      <div class="divider"></div>
-                      <p class="small hover-bottom-element">Замовити в один клік</p><span class="icon arrow-right linear-icon-plus"></span>
-                    </div>
-                  </a>
-                </div>
+
                 <!--       SINGLE ITEM END         -->
               </div>
             </div>
@@ -149,67 +123,179 @@
     <script src="js/core.min.js"></script>
     <script src="js/script.js"></script>
     <!-- coded by gel-->
-  <script>
-    // The item (or items) to press and hold on
-    let item = document.querySelector("#item");
+    <script>
+      let currentPage = 0;
+      let countOfPage = 0;
+      let itemsCount = 0;
 
-    let timerID;
-    let counter = 0;
+      let listElm = document.getElementById('productsContainer');
 
-    let pressHoldEvent = new CustomEvent("pressHold");
+      $( document ).ready(function() {
+        getData();
+      });
 
-    // Increase or decreae value to adjust how long
-    // one should keep pressing down before the pressHold
-    // event fires
-    let pressHoldDuration = 50;
-
-    // Listening for the mouse and touch events
-    item.addEventListener("mousedown", pressingDown, false);
-    item.addEventListener("mouseup", notPressingDown, false);
-    item.addEventListener("mouseleave", notPressingDown, false);
-
-    item.addEventListener("touchstart", pressingDown, false);
-    item.addEventListener("touchend", notPressingDown, false);
-
-    // Listening for our custom pressHold event
-    item.addEventListener("pressHold", doSomething, false);
-
-    function pressingDown(e) {
-      // Start the timer
-      requestAnimationFrame(timer);
-
-      e.preventDefault();
-
-      console.log("Pressing!");
-    }
-
-    function notPressingDown(e) {
-      // Stop the timer
-      cancelAnimationFrame(timerID);
-      counter = 0;
-
-      console.log("Not pressing!");
-    }
-
-    //
-    // Runs at 60fps when you are pressing down
-    //
-    function timer() {
-      console.log("Timer tick!");
-
-      if (counter < pressHoldDuration) {
-        timerID = requestAnimationFrame(timer);
-        counter++;
-      } else {
-        console.log("Press threshold reached!");
-        item.dispatchEvent(pressHoldEvent);
+      function clearExistingData() {
+        let parent = document.getElementById('productsContainer');
+        while (parent.firstChild) {
+          parent.removeChild(parent.firstChild);
+        }
       }
-    }
 
-    function doSomething(e) {
-      console.log("pressHold event fired!");
-    }
+      function smoothScroll() {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+      }
 
-  </script>
+
+      function showContent(object) {
+        let array = object['products'];
+        itemsCount = object['countOfAllProducts'];
+        for (let i =0; i<array.length; i++){
+          let product = document.createRange()
+                  .createContextualFragment('<div class="col-12 col-md-6 col-lg-4 isotope-item" data-filter="Category 1">\n' +
+                            '                  <a class="img-thumbnail-variant-3" href="images/slider-slide-14-1280x1920.jpg"  data-toggle="modal" data-target="#modalLogin">\n' +
+                            '                    <figure>\n' +
+                            '                      <img src="images/portfolio-2-418x315.jpg" alt="" width="418" height="315"/>\n' +
+                            '                    </figure>\n' +
+                            '                    <div class="caption"><span class="icon hover-top-element linear-icon-cart"></span>\n' +
+                            '                      <ul class="list-inline-tag hover-top-element">\n' +
+                            '                        <li>Артикул</li>\n' +
+                            '                      </ul>\n' +
+                            '                      <p class="heading-5 hover-top-element">#artikul</p>\n' +
+                            '                      <div class="divider"></div>\n' +
+                            '                      <p class="small hover-bottom-element">Замовити в один клік</p><span class="icon arrow-right linear-icon-plus"></span>\n' +
+                            '                    </div>\n' +
+                            '                  </a>\n' +
+                            '                </div>');
+            document.getElementById('productsContainer').appendChild(product);
+        }
+      }
+
+
+      // Detect when scrolled to bottom.
+      listElm.addEventListener('scroll', function() {
+        if (listElm.scrollTop + listElm.clientHeight >= listElm.scrollHeight) {
+          loadMore();
+        }
+      });
+
+      function loadMore() {
+        if(currentPage<countOfPage) {
+          let type = document.getElementById("typesOfShoesList").getElementsByClassName("active")[0].id;
+          console.log("type: "+type);
+          let page = currentPage + 1;
+          console.log("currentPage: " + page);
+          $.ajax({
+            method: "post",
+            url: "/shop",
+            contextType: "application/json",
+            data: {
+              type: type,
+              size: 1,
+              page: page
+            },
+            traditional: true,
+            success: function (products) {
+              console.log(products);
+              showContent(products);
+              currentPage++;
+              countOfPage = products['pageCount'];
+            },
+            error: function () {
+              alert("Помилка!");
+            }
+          });
+        }
+      }
+
+      function getData() {
+        let type = document.getElementById("typesOfShoesList").getElementsByClassName("active")[0].id;
+        console.log("type: "+type);
+        currentPage = 0;
+
+        $.ajax({
+          method: "post",
+          url: "/shop",
+          contextType: "application/json",
+          data: {
+            type:type,
+            size: 1,
+            page: 0
+          },
+          traditional: true,
+          success: function (products) {
+            console.log(products);
+            clearExistingData();
+            showContent(products);
+            smoothScroll();
+            countOfPage = products['pageCount'];
+          },
+          error: function () {
+            alert("Помилка!");
+          }
+        });
+      }
+    </script>
+<!--  <script>-->
+<!--    // The item (or items) to press and hold on-->
+<!--    let item = document.querySelector("#item");-->
+
+<!--    let timerID;-->
+<!--    let counter = 0;-->
+
+<!--    let pressHoldEvent = new CustomEvent("pressHold");-->
+
+<!--    // Increase or decreae value to adjust how long-->
+<!--    // one should keep pressing down before the pressHold-->
+<!--    // event fires-->
+<!--    let pressHoldDuration = 50;-->
+
+<!--    // Listening for the mouse and touch events-->
+<!--    item.addEventListener("mousedown", pressingDown, false);-->
+<!--    item.addEventListener("mouseup", notPressingDown, false);-->
+<!--    item.addEventListener("mouseleave", notPressingDown, false);-->
+
+<!--    item.addEventListener("touchstart", pressingDown, false);-->
+<!--    item.addEventListener("touchend", notPressingDown, false);-->
+
+<!--    // Listening for our custom pressHold event-->
+<!--    item.addEventListener("pressHold", doSomething, false);-->
+
+<!--    function pressingDown(e) {-->
+<!--      // Start the timer-->
+<!--      requestAnimationFrame(timer);-->
+
+<!--      e.preventDefault();-->
+
+<!--      console.log("Pressing!");-->
+<!--    }-->
+
+<!--    function notPressingDown(e) {-->
+<!--      // Stop the timer-->
+<!--      cancelAnimationFrame(timerID);-->
+<!--      counter = 0;-->
+
+<!--      console.log("Not pressing!");-->
+<!--    }-->
+
+<!--    //-->
+<!--    // Runs at 60fps when you are pressing down-->
+<!--    //-->
+<!--    function timer() {-->
+<!--      console.log("Timer tick!");-->
+
+<!--      if (counter < pressHoldDuration) {-->
+<!--        timerID = requestAnimationFrame(timer);-->
+<!--        counter++;-->
+<!--      } else {-->
+<!--        console.log("Press threshold reached!");-->
+<!--        item.dispatchEvent(pressHoldEvent);-->
+<!--      }-->
+<!--    }-->
+
+<!--    function doSomething(e) {-->
+<!--      console.log("pressHold event fired!");-->
+<!--    }-->
+
+<!--  </script>-->
   </body>
 </html>
