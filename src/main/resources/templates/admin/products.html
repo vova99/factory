@@ -85,7 +85,7 @@
                                                 <thead>
                                                 <tr class="nk-tb-item nk-tb-head">
                                                     <th class="nk-tb-col">Зображення</th>
-                                                    <th class="nk-tb-col"><span class="sub-text">Артикул</span></th>
+                                                    <th class="nk-tb-col tb-col-md"><span class="sub-text">Артикул</span></th>
                                                     <th class="nk-tb-col tb-col-md"><span class="sub-text">Статус</span></th>
                                                     <th class="nk-tb-col tb-col-md"><span class="sub-text">Тип</span></th>
                                                     <th class="nk-tb-col"><span class="sub-text" style="text-align: right; padding-right: 2rem;">Дії</span></th>
@@ -96,7 +96,7 @@
                                                     <td class="nk-tb-col" style="width: 20%;">
                                                         <img th:src="@{'/shop/getImgByProductId/'+${p.getId()}}" alt="">
                                                     </td>
-                                                   <td class="nk-tb-col">
+                                                   <td class="nk-tb-col tb-col-md">
                                                         <span th:text="${p.getArticle()}">Article</span>
                                                     </td>
 
