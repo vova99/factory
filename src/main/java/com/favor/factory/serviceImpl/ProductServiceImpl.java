@@ -52,7 +52,7 @@ public class ProductServiceImpl implements ProductService {
         System.out.println(product);
         if(product!=null){
             Product productDB = productJPA.findById(product.getId()).orElse(new Product());
-
+            productDB.setArticle(product.getArticle());
             productDB.setTypeOfProduct(product.getTypeOfProduct());
             System.out.println("Mulipart "+multipartFile.getSize());
             if(multipartFile.getSize()>0){
