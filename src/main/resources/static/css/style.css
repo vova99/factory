@@ -5549,7 +5549,7 @@ html .page .group-bottom > *, html .page .group-bottom > *:first-child {
 }
 @media (min-width: 992px) {
   .section-md {
-    padding: 80px 0 100px;
+    padding: 80px 0 80px;
   }
 
   .section-lg {
@@ -13148,4 +13148,8 @@ h3 + .card-custom-group-wrap {
   .landing-jumbotron .subtitle-wrapper {
     margin-top: -21px;
   }
+}
+
+.isotope-item{
+  margin-bottom: 1.5rem;
 }

@@ -61,22 +61,24 @@
         </div>
       </section>
 
-      <!-- Portfolio-->
       <section class="section-md bg-default text-center" id="portfolio">
         <div class="container">
           <h4 class="heading-decorated">Магазин</h4>
           <div class="isotope-wrap row row-70">
             <div class="col-sm-12">
               <ul class="list-nav isotope-filters isotope-filters-horizontal" id="typesOfShoesList">
-                <li><a class="active" data-isotope-filter="*" data-isotope-group="gallery" th:id="-1" href="#" onclick="getData()">All</a></li>
+                <li><a data-isotope-filter="*" data-isotope-group="gallery" th:id="-1"  onclick="getData(this.id)">All</a></li>
                 <li th:each="t : ${types}" th:id="${t.getId()}">
-                  <a th:data-isotope-filter="${t.getId()}" data-isotope-group="gallery" href="#" th:text="${t.getName()}" th:id="${t.getId()}" onclick="getData()">Web Design</a>
+                  <a th:data-isotope-filter="${t.getId()}" data-isotope-group="gallery" th:id="${t.getId()}"  th:text="${t.getName()}" onclick="getData(this.id)">Web Design</a>
                 </li>
               </ul>
-              <div class="isotope row" data-isotope-layout="fitRows" data-isotope-group="gallery" id="productsContainer">
-                <!--       SINGLE ITEM START         -->
+<!--              <div class="isotope row" data-isotope-layout="fitRows" data-isotope-group="gallery" id="productsContainer">-->
+<!--                &lt;!&ndash;       SINGLE ITEM START         &ndash;&gt;-->
 
-                <!--       SINGLE ITEM END         -->
+<!--                &lt;!&ndash;       SINGLE ITEM END         &ndash;&gt;-->
+<!--              </div>-->
+              <div class="row" id="productsContainer">
+
               </div>
             </div>
           </div>
@@ -128,11 +130,14 @@
       let countOfPage = 0;
       let itemsCount = 0;
 
-      let listElm = document.getElementById('productsContainer');
+      let type = -1;
+
+      // let listElm = document.getElementById('productsContainer');
 
       $( document ).ready(function() {
-        getData();
+        getData(-1);
       });
+
 
       function clearExistingData() {
         let parent = document.getElementById('productsContainer');
@@ -141,9 +146,9 @@
         }
       }
 
-      function smoothScroll() {
-        window.scrollTo({top: 0, behavior: 'smooth'});
-      }
+      // function smoothScroll() {
+      //   window.scrollTo({top: 0, behavior: 'smooth'});
+      // }
 
 
       function showContent(object) {
@@ -152,36 +157,53 @@
         for (let i =0; i<array.length; i++){
           let product = document.createRange()
                   .createContextualFragment('<div class="col-12 col-md-6 col-lg-4 isotope-item" data-filter="Category 1">\n' +
-                            '                  <a class="img-thumbnail-variant-3" href="images/slider-slide-14-1280x1920.jpg"  data-toggle="modal" data-target="#modalLogin">\n' +
-                            '                    <figure>\n' +
-                            '                      <img src="images/portfolio-2-418x315.jpg" alt="" width="418" height="315"/>\n' +
-                            '                    </figure>\n' +
-                            '                    <div class="caption"><span class="icon hover-top-element linear-icon-cart"></span>\n' +
-                            '                      <ul class="list-inline-tag hover-top-element">\n' +
-                            '                        <li>Артикул</li>\n' +
-                            '                      </ul>\n' +
-                            '                      <p class="heading-5 hover-top-element">#artikul</p>\n' +
-                            '                      <div class="divider"></div>\n' +
-                            '                      <p class="small hover-bottom-element">Замовити в один клік</p><span class="icon arrow-right linear-icon-plus"></span>\n' +
-                            '                    </div>\n' +
-                            '                  </a>\n' +
-                            '                </div>');
+                          '                  <a class="img-thumbnail-variant-3"  data-toggle="modal" data-target="#modalLogin">\n' +
+                          '                    <figure>\n' +
+                          '                     <img src="/shop/getImgByProductId/' + array[i].id + '" alt="" width="418" height="315"/>\n' +
+                          '                    </figure>\n' +
+                          '                    <div class="caption"><span class="icon hover-top-element linear-icon-cart"></span>\n' +
+                          '                      <ul class="list-inline-tag hover-top-element">\n' +
+                          '                        <li>артикул</li>\n' +
+                          '                      </ul>\n' +
+                          '                      <p class="heading-5 hover-top-element">'+array[i].article+'</p>\n' +
+                          '                      <div class="divider"></div>\n' +
+                          '                      <p class="small hover-bottom-element">Замовити в один клік</p><span class="icon arrow-right linear-icon-plus"></span>\n' +
+                          '                    </div>\n' +
+                          '                  </a>\n' +
+                          '                </div>');
             document.getElementById('productsContainer').appendChild(product);
         }
       }
 
 
-      // Detect when scrolled to bottom.
-      listElm.addEventListener('scroll', function() {
-        if (listElm.scrollTop + listElm.clientHeight >= listElm.scrollHeight) {
-          loadMore();
-        }
-      });
+      // listElm.addEventListener('scroll', function() {
+      //   if (listElm.scrollTop + listElm.clientHeight >= listElm.scrollHeight) {
+      //     loadMore();
+      //   }
+      // });
+
+      // $(window).on("scroll", function() {
+      //   var scrollHeight = $(document).height();
+      //   var scrollPos = $(window).height() + $(window).scrollTop();
+      //   if ((scrollHeight - scrollPos) / scrollHeight == 0) {
+      //     loadMore();
+      //     setTimeout(loadMore, 10000);
+      //     console.log("bottom!");
+      //   }
+      // });
+
+      // window.addEventListener('scroll', () => {
+      //   const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+      //
+      //   console.log( { scrollTop, scrollHeight, clientHeight });
+      //
+      //   if(clientHeight + scrollTop >= scrollHeight - 5) {
+      //     loadMore();
+      //   }
+      // });
 
       function loadMore() {
         if(currentPage<countOfPage) {
-          let type = document.getElementById("typesOfShoesList").getElementsByClassName("active")[0].id;
-          console.log("type: "+type);
           let page = currentPage + 1;
           console.log("currentPage: " + page);
           $.ajax({
@@ -207,8 +229,13 @@
         }
       }
 
-      function getData() {
-        let type = document.getElementById("typesOfShoesList").getElementsByClassName("active")[0].id;
+      function getData(id) {
+        let active = document.getElementById('typesOfShoesList').getElementsByClassName('active');
+        for (let i =0; i<active.length;i++){
+          active[i].classList.remove('active');
+        }
+        document.getElementById(id).classList.add("active");
+        type = parseInt(id);
         console.log("type: "+type);
         currentPage = 0;
 
@@ -217,7 +244,7 @@
           url: "/shop",
           contextType: "application/json",
           data: {
-            type:type,
+            type:id,
             size: 1,
             page: 0
           },
@@ -226,7 +253,7 @@
             console.log(products);
             clearExistingData();
             showContent(products);
-            smoothScroll();
+            // smoothScroll();
             countOfPage = products['pageCount'];
           },
           error: function () {
