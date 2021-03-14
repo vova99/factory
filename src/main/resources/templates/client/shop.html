@@ -130,12 +130,38 @@
       let countOfPage = 0;
       let itemsCount = 0;
 
-      let type = -1;
 
       // let listElm = document.getElementById('productsContainer');
 
       $( document ).ready(function() {
         getData(-1);
+        // window.addEventListener('scroll', () => {
+        //   const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+
+          // console.log( { scrollTop, scrollHeight, clientHeight });
+        //   if (currentPage<=countOfPage) {
+        //     if(clientHeight + scrollTop >= scrollHeight - 5) {
+        //       setTimeout(loadMore,3000);
+        //       console.log('After ready load');
+        //     }
+        //   }else {
+        //     console.log('No more pages to load!');
+        //   }
+        // });
+
+      //
+        $(window).on("scroll", function() {
+          var scrollHeight = $(document).height();
+          var scrollPos = $(window).height() + $(window).scrollTop();
+          if ((scrollHeight - scrollPos) / scrollHeight == 0) {
+            if (currentPage<=countOfPage) {
+              loadMore();
+              console.log("Loaded new data set!")
+            }else {
+              console.log('No more pages to load!');
+            }
+          }
+        });
       });
 
 
@@ -176,32 +202,6 @@
       }
 
 
-      // listElm.addEventListener('scroll', function() {
-      //   if (listElm.scrollTop + listElm.clientHeight >= listElm.scrollHeight) {
-      //     loadMore();
-      //   }
-      // });
-
-      // $(window).on("scroll", function() {
-      //   var scrollHeight = $(document).height();
-      //   var scrollPos = $(window).height() + $(window).scrollTop();
-      //   if ((scrollHeight - scrollPos) / scrollHeight == 0) {
-      //     loadMore();
-      //     setTimeout(loadMore, 10000);
-      //     console.log("bottom!");
-      //   }
-      // });
-
-      window.addEventListener('scroll', () => {
-        const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-
-        console.log( { scrollTop, scrollHeight, clientHeight });
-
-        if(clientHeight + scrollTop >= scrollHeight - 5) {
-          loadMore();
-        }
-      });
-
       function loadMore() {
         if(currentPage<countOfPage) {
           let page = currentPage + 1;
@@ -212,7 +212,7 @@
             contextType: "application/json",
             data: {
               type: type,
-              size: 1,
+              size: 3,
               page: page
             },
             traditional: true,
@@ -245,7 +245,7 @@
           contextType: "application/json",
           data: {
             type:id,
-            size: 1,
+            size: 3,
             page: 0
           },
           traditional: true,
