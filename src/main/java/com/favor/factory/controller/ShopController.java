@@ -38,15 +38,14 @@ public class ShopController {
 
     @ResponseBody
     @PostMapping
-    public JSONObject getFilteredProducts(Integer types, Integer page, Integer size){
-        List<Product> products = productService.getFilteredProducts(types,size,page);
-        double countOfAllProducts =  productService.getCountOfElements(types,size,page);
+    public JSONObject getFilteredProducts(Integer type, Integer page, Integer size){
+        List<Product> products = productService.getFilteredProducts(type,size,page);
+        double countOfAllProducts =  productService.getCountOfElements(type,size,page);
         JSONObject object = new JSONObject();
         JSONArray jsonArray = new JSONArray();
         for(Product product:products){
             jsonArray.add(ProductDTO.convertToDTO(product));
         }
-
 
         object.put("products",jsonArray);
         object.put("countOfAllProducts",countOfAllProducts);

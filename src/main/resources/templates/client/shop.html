@@ -135,34 +135,6 @@
 
       $( document ).ready(function() {
         getData(-1);
-        // window.addEventListener('scroll', () => {
-        //   const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-
-          // console.log( { scrollTop, scrollHeight, clientHeight });
-        //   if (currentPage<=countOfPage) {
-        //     if(clientHeight + scrollTop >= scrollHeight - 5) {
-        //       setTimeout(loadMore,3000);
-        //       console.log('After ready load');
-        //     }
-        //   }else {
-        //     console.log('No more pages to load!');
-        //   }
-        // });
-
-      //
-      //   $(window).on("scroll", function() {
-      //     var scrollHeight = $(document).height();
-      //     var scrollPos = $(window).height() + $(window).scrollTop();
-      //     if ((scrollHeight - scrollPos) / scrollHeight == 0) {
-      //       if (currentPage<=countOfPage) {
-      //         loadMore();
-      //
-      //       }else {
-      //         console.log('No more pages to load!');
-      //       }
-      //     }
-      //   });
-      //   let page = 1;
         let currentscrollHeight = 0;
         $(window).on("scroll", () => {
           const scrollHeight = $(document).height();
@@ -261,7 +233,7 @@
           url: "/shop",
           contextType: "application/json",
           data: {
-            type:id,
+            type:type,
             size: 3,
             page: 0
           },
