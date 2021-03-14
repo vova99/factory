@@ -150,16 +150,33 @@
         // });
 
       //
-        $(window).on("scroll", function() {
-          var scrollHeight = $(document).height();
-          var scrollPos = $(window).height() + $(window).scrollTop();
-          if ((scrollHeight - scrollPos) / scrollHeight == 0) {
+      //   $(window).on("scroll", function() {
+      //     var scrollHeight = $(document).height();
+      //     var scrollPos = $(window).height() + $(window).scrollTop();
+      //     if ((scrollHeight - scrollPos) / scrollHeight == 0) {
+      //       if (currentPage<=countOfPage) {
+      //         loadMore();
+      //
+      //       }else {
+      //         console.log('No more pages to load!');
+      //       }
+      //     }
+      //   });
+      //   let page = 1;
+        let currentscrollHeight = 0;
+        $(window).on("scroll", () => {
+          const scrollHeight = $(document).height();
+          const scrollPos = Math.floor($(window).height() + $(window).scrollTop());
+          const isBottom = scrollHeight - 300 < scrollPos;
+
+          if (isBottom && currentscrollHeight < scrollHeight) {
             if (currentPage<=countOfPage) {
-              loadMore();
-              console.log("Loaded new data set!")
-            }else {
-              console.log('No more pages to load!');
-            }
+                loadMore();
+                console.log("Loaded new data set!")
+              }else {
+                console.log('No more pages to load!');
+              }
+            currentscrollHeight = scrollHeight;
           }
         });
       });
