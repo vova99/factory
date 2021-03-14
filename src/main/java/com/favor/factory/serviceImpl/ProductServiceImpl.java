@@ -96,14 +96,18 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> getFilteredProducts(Integer type, Integer size, Integer page) {
+        List<Product> products;
         if(type==null || type<=0){
-            return findAll();
+            products= findAll();
+        }else {
+            if (size == null) {
+                size = 12;
+            }
+            if (page == null) {
+                page = 0;
+            }
+            products = productJPA.findByTypeOfProductId(type);
         }
-        if(size==null){size=12;}
-        if(page==null){page=0;}
-
-        List<Product> products = productJPA.findByTypeOfProductId(type);
-
         Pageable paging = PageRequest.of(page,size);
         int start = Math.min((int)paging.getOffset(), products.size());
         int end = Math.min((start + paging.getPageSize()), products.size());
