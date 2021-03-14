@@ -40,18 +40,17 @@ public class ShopController {
     @PostMapping
     public JSONObject getFilteredProducts(Integer types, Integer page, Integer size){
         List<Product> products = productService.getFilteredProducts(types,size,page);
-        int countOfAllProducts =  productService.getCountOfElements(types,size,page);
+        double countOfAllProducts =  productService.getCountOfElements(types,size,page);
         JSONObject object = new JSONObject();
         JSONArray jsonArray = new JSONArray();
         for(Product product:products){
             jsonArray.add(ProductDTO.convertToDTO(product));
         }
 
-        double countOfElements = countOfAllProducts;
 
         object.put("products",jsonArray);
         object.put("countOfAllProducts",countOfAllProducts);
-        object.put("pageCount",Math.ceil(countOfElements/ size));
+        object.put("pageCount",Math.ceil(countOfAllProducts/ size));
         return object;
     }
 
