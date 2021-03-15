@@ -52,5 +52,4 @@ public class ShopController {
         object.put("pageCount",Math.ceil(countOfAllProducts/ size));
         return object;
     }
-
 }

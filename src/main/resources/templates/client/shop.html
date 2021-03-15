@@ -3,233 +3,235 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <!-- Site Title-->
-    <title>Favor - Магазин</title>
-    <meta name="format-detection" content="telephone=no">
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta charset="utf-8">
-    <link rel="icon" href="images/favicon.png" type="image/x-icon">
-    <!-- Stylesheets-->
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,900">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/fonts.css">
-		<!--[if lt IE 10]>
-    <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
-    <script src="js/html5shiv.min.js"></script>
-		<![endif]-->
-  </head>
-  <body>
-    <div class="preloader">
-      <div class="cssload-container">
-        <div class="windows8">
-          <div class="wBall" id="wBall_1">
-            <div class="wInnerBall"></div>
+<head>
+  <!-- Site Title-->
+  <title>Favor - Магазин</title>
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <link rel="icon" href="images/favicon.png" type="image/x-icon">
+  <!-- Stylesheets-->
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,900">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/fonts.css">
+  <!--[if lt IE 10]>
+  <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
+  <script src="js/html5shiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="preloader">
+  <div class="cssload-container">
+    <div class="windows8">
+      <div class="wBall" id="wBall_1">
+        <div class="wInnerBall"></div>
+      </div>
+      <div class="wBall" id="wBall_2">
+        <div class="wInnerBall"></div>
+      </div>
+      <div class="wBall" id="wBall_3">
+        <div class="wInnerBall"></div>
+      </div>
+      <div class="wBall" id="wBall_4">
+        <div class="wInnerBall"></div>
+      </div>
+      <div class="wBall" id="wBall_5">
+        <div class="wInnerBall"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Page-->
+<div class="page">
+  <!-- RD Navbar-->
+  <div th:replace="~{client/fragments/header.html :: headerFrag}"></div>
+
+  <!-- Call to Action-->
+  <section class="section section-sm context-dark bg-gray-dark section-cta">
+    <div class="container">
+      <div class="row row-50 align-items-center justify-content-center justify-content-xl-between">
+        <div class="col-xl-8 text-xl-left">
+          <h4><span class="font-weight-bold">Extrafast</span><span class="font-weight-normal">offers flexible solutions with lots of advantages</span></h4>
+          <p>Our websites are fully responsive, customizable, and SEO-ready.</p>
+        </div>
+        <div class="col-xl-2 text-xl-right"><a class="button button-primary" target="_blank" data-toggle="modal" data-target="#modalLogin">Get in touch</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-md bg-default text-center" id="portfolio">
+    <div class="container">
+      <h4 class="heading-decorated">Магазин</h4>
+      <div class="isotope-wrap row row-70">
+        <div class="col-sm-12">
+          <ul class="list-nav isotope-filters isotope-filters-horizontal" id="typesOfShoesList">
+            <li><a data-isotope-filter="*" data-isotope-group="gallery" th:id="-1"  onclick="getData(this.id)">All</a></li>
+            <li th:each="t : ${types}" th:id="${t.getId()}">
+              <a th:data-isotope-filter="${t.getId()}" data-isotope-group="gallery" th:id="${t.getId()}"  th:text="${t.getName()}" onclick="getData(this.id)">Web Design</a>
+            </li>
+          </ul>
+          <!--              <div class="isotope row" data-isotope-layout="fitRows" data-isotope-group="gallery" id="productsContainer">-->
+          <!--                &lt;!&ndash;       SINGLE ITEM START         &ndash;&gt;-->
+
+          <!--                &lt;!&ndash;       SINGLE ITEM END         &ndash;&gt;-->
+          <!--              </div>-->
+          <div class="row" id="productsContainer">
+
           </div>
-          <div class="wBall" id="wBall_2">
-            <div class="wInnerBall"></div>
-          </div>
-          <div class="wBall" id="wBall_3">
-            <div class="wInnerBall"></div>
-          </div>
-          <div class="wBall" id="wBall_4">
-            <div class="wInnerBall"></div>
-          </div>
-          <div class="wBall" id="wBall_5">
-            <div class="wInnerBall"></div>
-          </div>
+          <button class="button button-primary" onclick="loadMore()" id="loadMoreButton">Завантажити ще</button>
         </div>
       </div>
     </div>
-    <!-- Page-->
-    <div class="page">
-      <!-- RD Navbar-->
-      <div th:replace="~{client/fragments/header.html :: headerFrag}"></div>
+  </section>
 
-      <!-- Call to Action-->
-      <section class="section section-sm context-dark bg-gray-dark section-cta">
-        <div class="container">
-          <div class="row row-50 align-items-center justify-content-center justify-content-xl-between">
-            <div class="col-xl-8 text-xl-left">
-              <h4><span class="font-weight-bold">Extrafast</span><span class="font-weight-normal">offers flexible solutions with lots of advantages</span></h4>
-              <p>Our websites are fully responsive, customizable, and SEO-ready.</p>
-            </div>
-            <div class="col-xl-2 text-xl-right"><a class="button button-primary" target="_blank" data-toggle="modal" data-target="#modalLogin">Get in touch</a></div>
+
+  <!-- Page Footer-->
+  <div th:replace="~{client/fragments/footer.html :: footerFrag}"></div>
+  <div th:replace="~{client/fragments/footer.html :: copyrightFrag}"></div>
+
+</div>
+<!-- Modal login window-->
+<div class="modal fade" id="modalLogin" role="dialog">
+  <div class="modal-dialog modal-dialog_custom">
+    <!-- Modal content-->
+    <div class="modal-dialog__inner">
+      <button class="close" type="button" data-dismiss="modal"></button>
+      <div class="modal-dialog__content">
+        <h5 class="heading-decorated">Заявка на замовлення товару</h5>
+        <!-- RD Mailform-->
+        <form class="rd-mailform rd-mailform_style-1" data-form-output="form-output-global" data-form-type="contact" method="post" action="/contacts">
+          <div class="form-wrap form-wrap_icon linear-icon-man">
+            <input class="form-input" id="contact-popup-name" type="text" name="name" data-constraints="@Required">
+            <label class="form-label" for="contact-popup-name">Ім'я</label>
           </div>
-        </div>
-      </section>
-
-      <section class="section-md bg-default text-center" id="portfolio">
-        <div class="container">
-          <h4 class="heading-decorated">Магазин</h4>
-          <div class="isotope-wrap row row-70">
-            <div class="col-sm-12">
-              <ul class="list-nav isotope-filters isotope-filters-horizontal" id="typesOfShoesList">
-                <li><a data-isotope-filter="*" data-isotope-group="gallery" th:id="-1"  onclick="getData(this.id)">All</a></li>
-                <li th:each="t : ${types}" th:id="${t.getId()}">
-                  <a th:data-isotope-filter="${t.getId()}" data-isotope-group="gallery" th:id="${t.getId()}"  th:text="${t.getName()}" onclick="getData(this.id)">Web Design</a>
-                </li>
-              </ul>
-<!--              <div class="isotope row" data-isotope-layout="fitRows" data-isotope-group="gallery" id="productsContainer">-->
-<!--                &lt;!&ndash;       SINGLE ITEM START         &ndash;&gt;-->
-
-<!--                &lt;!&ndash;       SINGLE ITEM END         &ndash;&gt;-->
-<!--              </div>-->
-              <div class="row" id="productsContainer">
-
-              </div>
-              <button class="button button-primary" onclick="loadMore()" id="loadMoreButton">Завантажити ще</button>
-            </div>
+          <div class="form-wrap form-wrap_icon linear-icon-telephone">
+            <input class="form-input" id="contact-popup-email" type="tel" name="phone" data-constraints="@Required">
+            <label class="form-label" for="contact-popup-email">Телефон</label>
           </div>
-        </div>
-      </section>
-
-
-      <!-- Page Footer-->
-      <div th:replace="~{client/fragments/footer.html :: footerFrag}"></div>
-      <div th:replace="~{client/fragments/footer.html :: copyrightFrag}"></div>
-
-    </div>
-    <!-- Modal login window-->
-    <div class="modal fade" id="modalLogin" role="dialog">
-      <div class="modal-dialog modal-dialog_custom">
-        <!-- Modal content-->
-        <div class="modal-dialog__inner">
-          <button class="close" type="button" data-dismiss="modal"></button>
-          <div class="modal-dialog__content">
-            <h5 class="heading-decorated">Заявка на замовлення товару</h5>
-            <!-- RD Mailform-->
-            <form class="rd-mailform rd-mailform_style-1" data-form-output="form-output-global" data-form-type="contact" method="post" action="/contacts">
-              <div class="form-wrap form-wrap_icon linear-icon-man">
-                <input class="form-input" id="contact-popup-name" type="text" name="name" data-constraints="@Required">
-                <label class="form-label" for="contact-popup-name">Ім'я</label>
-              </div>
-              <div class="form-wrap form-wrap_icon linear-icon-telephone">
-                <input class="form-input" id="contact-popup-email" type="tel" name="phone" data-constraints="@Required">
-                <label class="form-label" for="contact-popup-email">Телефон</label>
-              </div>
-              <div class="form-wrap form-wrap_icon linear-icon-feather">
-                <textarea class="form-input" id="contact-popup-message" name="description"></textarea>
-                <label class="form-label" for="contact-popup-message">Опис</label>
-              </div>
-              <button class="button button-primary" type="submit">надіслати</button>
-            </form>
+          <div class="form-wrap form-wrap_icon linear-icon-feather">
+            <textarea class="form-input" id="contact-popup-message" name="description"></textarea>
+            <label class="form-label" for="contact-popup-message">Опис</label>
           </div>
-        </div>
+          <button class="button button-primary" type="submit">надіслати</button>
+        </form>
       </div>
     </div>
-    <!-- Global Mailform Output-->
-    <div class="snackbars" id="form-output-global"></div>
-    <!-- Javascript-->
-    <script src="js/core.min.js"></script>
-    <script src="js/script.js"></script>
-    <!-- coded by gel-->
-    <script>
-      let currentPage = 0;
-      let countOfPage = 0;
+  </div>
+</div>
+<!-- Global Mailform Output-->
+<div class="snackbars" id="form-output-global"></div>
+<!-- Javascript-->
+<script src="js/core.min.js"></script>
+<script src="js/script.js"></script>
+<!-- coded by gel-->
+<script>
+  let currentPage = 0;
+  let countOfPage = 0;
 
-      $( document ).ready(function() {
-        getData(-1);
+  $( document ).ready(function() {
+    getData(-1);
+  });
+
+  function clearExistingData() {
+    currentPage = 0;
+    let parent = document.getElementById('productsContainer');
+    while (parent.firstChild) {
+      parent.removeChild(parent.firstChild);
+    }
+  }
+
+  function showContent(object) {
+    let array = object['products'];
+    for (let i =0; i<array.length; i++){
+      let product = document.createRange()
+              .createContextualFragment('<div class="col-12 col-md-6 col-lg-4 isotope-item" data-filter="Category 1">\n' +
+                      '                  <a class="img-thumbnail-variant-3"  data-toggle="modal" data-target="#modalLogin">\n' +
+                      '                    <figure>\n' +
+                      '                     <img src="/shop/getImgByProductId/' + array[i].id + '" alt="" width="418" height="315"/>\n' +
+                      '                    </figure>\n' +
+                      '                    <div class="caption"><span class="icon hover-top-element linear-icon-cart"></span>\n' +
+                      '                      <ul class="list-inline-tag hover-top-element">\n' +
+                      '                        <li>артикул</li>\n' +
+                      '                      </ul>\n' +
+                      '                      <p class="heading-5 hover-top-element">'+array[i].article+'</p>\n' +
+                      '                      <div class="divider"></div>\n' +
+                      '                      <p class="small hover-bottom-element">Замовити в один клік</p><span class="icon arrow-right linear-icon-plus"></span>\n' +
+                      '                    </div>\n' +
+                      '                  </a>\n' +
+                      '                </div>');
+      document.getElementById('productsContainer').appendChild(product);
+    }
+  }
+
+  function loadMore() {
+    if(currentPage+1<countOfPage) {
+      document.getElementById('loadMoreButton').style.display = "inline-block";
+      console.log("Page: "+(currentPage)+" of  "+countOfPage+" pages");
+      console.log("Loading new data set!")
+      let page = currentPage+1;
+      $.ajax({
+        method: "post",
+        url: "/shop",
+        contextType: "application/json",
+        data: {
+          type: type,
+          size: 3,
+          page: page
+        },
+        traditional: true,
+        success: function (products) {
+          console.log(products);
+          showContent(products);
+          currentPage++;
+          countOfPage = products['pageCount'];
+        },
+        error: function () {
+          alert("Помилка!");
+        }
       });
-
-      function clearExistingData() {
-        currentPage = 0;
-        let parent = document.getElementById('productsContainer');
-        while (parent.firstChild) {
-          parent.removeChild(parent.firstChild);
-        }
+      if(page+1===countOfPage){
+        document.getElementById('loadMoreButton').style.display = "none";
       }
+    }else {
+      console.log('No more pages to load!');
+    }
+  }
 
-      function showContent(object) {
-        let array = object['products'];
-        for (let i =0; i<array.length; i++){
-          let product = document.createRange()
-                  .createContextualFragment('<div class="col-12 col-md-6 col-lg-4 isotope-item" data-filter="Category 1">\n' +
-                          '                  <a class="img-thumbnail-variant-3"  data-toggle="modal" data-target="#modalLogin">\n' +
-                          '                    <figure>\n' +
-                          '                     <img src="/shop/getImgByProductId/' + array[i].id + '" alt="" width="418" height="315"/>\n' +
-                          '                    </figure>\n' +
-                          '                    <div class="caption"><span class="icon hover-top-element linear-icon-cart"></span>\n' +
-                          '                      <ul class="list-inline-tag hover-top-element">\n' +
-                          '                        <li>артикул</li>\n' +
-                          '                      </ul>\n' +
-                          '                      <p class="heading-5 hover-top-element">'+array[i].article+'</p>\n' +
-                          '                      <div class="divider"></div>\n' +
-                          '                      <p class="small hover-bottom-element">Замовити в один клік</p><span class="icon arrow-right linear-icon-plus"></span>\n' +
-                          '                    </div>\n' +
-                          '                  </a>\n' +
-                          '                </div>');
-            document.getElementById('productsContainer').appendChild(product);
-        }
+  function getData(id) {
+    currentScrollHeight = 0;
+    let active = document.getElementById('typesOfShoesList').getElementsByClassName('active');
+    for (let i =0; i<active.length;i++){
+      active[i].classList.remove('active');
+    }
+    document.getElementById(id).classList.add("active");
+    type = parseInt(id);
+    console.log("type: "+type);
+    currentPage = 0;
+
+    $.ajax({
+      method: "post",
+      url: "/shop",
+      contextType: "application/json",
+      data: {
+        type: type,
+        size: 3,
+        page: 0
+      },
+      traditional: true,
+      success: function (products) {
+        console.log(products);
+        clearExistingData();
+        showContent(products);
+        countOfPage = products['pageCount'];
+      },
+      error: function () {
+        alert("Помилка!");
       }
-
-      function loadMore() {
-        if(currentPage+1<countOfPage) {
-          document.getElementById('loadMoreButton').style.display = "inline-block";
-          console.log("Page: "+(currentPage)+" of  "+countOfPage+" pages");
-          console.log("Loading new data set!")
-          let page = currentPage+1;
-          $.ajax({
-            method: "post",
-            url: "/shop",
-            contextType: "application/json",
-            data: {
-              type: type,
-              size: 3,
-              page: page
-            },
-            traditional: true,
-            success: function (products) {
-              console.log(products);
-              showContent(products);
-              currentPage++;
-              countOfPage = products['pageCount'];
-            },
-            error: function () {
-              alert("Помилка!");
-            }
-          });
-        }else {
-          document.getElementById('loadMoreButton').style.display = "none";
-          console.log('No more pages to load!');
-        }
-      }
-
-      function getData(id) {
-        currentScrollHeight = 0;
-        let active = document.getElementById('typesOfShoesList').getElementsByClassName('active');
-        for (let i =0; i<active.length;i++){
-          active[i].classList.remove('active');
-        }
-        document.getElementById(id).classList.add("active");
-        type = parseInt(id);
-        console.log("type: "+type);
-        currentPage = 0;
-
-        $.ajax({
-          method: "post",
-          url: "/shop",
-          contextType: "application/json",
-          data: {
-            type: type,
-            size: 3,
-            page: 0
-          },
-          traditional: true,
-          success: function (products) {
-            console.log(products);
-            clearExistingData();
-            showContent(products);
-            countOfPage = products['pageCount'];
-          },
-          error: function () {
-            alert("Помилка!");
-          }
-        });
-      }
-    </script>
+    });
+  }
+</script>
 <!--  <script>-->
 <!--    // The item (or items) to press and hold on-->
 <!--    let item = document.querySelector("#item");-->
@@ -292,5 +294,5 @@
 <!--    }-->
 
 <!--  </script>-->
-  </body>
+</body>
 </html>
