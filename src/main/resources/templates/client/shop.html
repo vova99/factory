@@ -80,6 +80,7 @@
               <div class="row" id="productsContainer">
 
               </div>
+              <button class="button button-primary" onclick="loadMore()" id="loadMoreButton">Завантажити ще</button>
             </div>
           </div>
         </div>
@@ -128,47 +129,21 @@
     <script>
       let currentPage = 0;
       let countOfPage = 0;
-      let itemsCount = 0;
-
-
-      // let listElm = document.getElementById('productsContainer');
 
       $( document ).ready(function() {
         getData(-1);
-        let currentscrollHeight = 0;
-        $(window).on("scroll", () => {
-          const scrollHeight = $(document).height();
-          const scrollPos = Math.floor($(window).height() + $(window).scrollTop());
-          const isBottom = scrollHeight - 300 < scrollPos;
-
-          if (isBottom && currentscrollHeight < scrollHeight) {
-            if (currentPage<=countOfPage) {
-                loadMore();
-                console.log("Loaded new data set!")
-              }else {
-                console.log('No more pages to load!');
-              }
-            currentscrollHeight = scrollHeight;
-          }
-        });
       });
 
-
       function clearExistingData() {
+        currentPage = 0;
         let parent = document.getElementById('productsContainer');
         while (parent.firstChild) {
           parent.removeChild(parent.firstChild);
         }
       }
 
-      // function smoothScroll() {
-      //   window.scrollTo({top: 0, behavior: 'smooth'});
-      // }
-
-
       function showContent(object) {
         let array = object['products'];
-        itemsCount = object['countOfAllProducts'];
         for (let i =0; i<array.length; i++){
           let product = document.createRange()
                   .createContextualFragment('<div class="col-12 col-md-6 col-lg-4 isotope-item" data-filter="Category 1">\n' +
@@ -192,9 +167,11 @@
 
 
       function loadMore() {
-        if(currentPage<countOfPage) {
-          let page = currentPage + 1;
-          console.log("currentPage: " + page);
+        if(currentPage+1<countOfPage) {
+          document.getElementById('loadMoreButton').style.display = "inline-block";
+          console.log("Page: "+(currentPage)+" of  "+countOfPage+" pages");
+          console.log("Loading new data set!")
+          let page = currentPage+1;
           $.ajax({
             method: "post",
             url: "/shop",
@@ -215,10 +192,14 @@
               alert("Помилка!");
             }
           });
+        }else {
+          document.getElementById('loadMoreButton').style.display = "none";
+          console.log('No more pages to load!');
         }
       }
 
       function getData(id) {
+        currentScrollHeight = 0;
         let active = document.getElementById('typesOfShoesList').getElementsByClassName('active');
         for (let i =0; i<active.length;i++){
           active[i].classList.remove('active');
@@ -233,7 +214,7 @@
           url: "/shop",
           contextType: "application/json",
           data: {
-            type:type,
+            type: type,
             size: 3,
             page: 0
           },
@@ -242,7 +223,6 @@
             console.log(products);
             clearExistingData();
             showContent(products);
-            // smoothScroll();
             countOfPage = products['pageCount'];
           },
           error: function () {
